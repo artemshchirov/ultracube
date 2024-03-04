@@ -4,5 +4,11 @@
   box-sizing: border-box;
   margin: 0;
   position: relative;
-  font-weight: normal;
+  list-style: none;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
 }

@@ -1,12 +1,7 @@
 <script setup lang="ts">
-console.log('App')
+import AppHeader from './components/AppHeader.vue'
 </script>
 
 <template>
-  <h1>Vue 3 + Vite + TypeScript + SCSS</h1>
-  <button class="button">Start</button>
+  <AppHeader />
 </template>
-
-<style lang="scss">
-@import './styles/main.scss';
-</style>

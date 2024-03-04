@@ -4,14 +4,19 @@ $font-secondary: Arial, sans-serif;
 $border-radius: 4px;
 $transition-default: 0s ease-in;
 
+$shadow-small: 0 8px 10px -6px rgb(0 0 0 / 0.1);
+$shadow-large: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
 @mixin theme-light {
   --color-primary: #5ece7b;
   --color-primary-hover: #53b56c;
   --color-primary-active: #53b56ce3;
   --color-secondary: #f1f1f1;
-  --color-background: #ffffff;
+  --color-background: #fef7e7;
   --color-text: #333;
+  --color-text-secondary: #666;
   --color-text-light: #ffffff;
+  --color-header-border: #e0e0e0;
   --color-error: #ff0000;
   --color-success: #4bb543;
   --color-info: #17a2b8;
@@ -24,7 +29,9 @@ $transition-default: 0s ease-in;
   --color-secondary: #242424;
   --color-background: #121212;
   --color-text: #e0e0e0;
+  --color-text-secondary: #e0e0e0db;
   --color-text-light: #ffffff;
+  --color-header-border: #e0e0e0;
   --color-error: #ff6868;
   --color-success: #76c893;
   --color-info: #5bc0de;
