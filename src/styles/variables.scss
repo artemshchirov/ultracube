@@ -1,0 +1,31 @@
+$font-primary: 'Inter', Avenir, Helvetica;
+$font-secondary: Arial, sans-serif;
+
+$border-radius: 4px;
+$transition-default: 0s ease-in;
+
+@mixin theme-light {
+  --color-primary: #5ece7b;
+  --color-primary-hover: #53b56c;
+  --color-primary-active: #53b56ce3;
+  --color-secondary: #f1f1f1;
+  --color-background: #ffffff;
+  --color-text: #333;
+  --color-text-light: #ffffff;
+  --color-error: #ff0000;
+  --color-success: #4bb543;
+  --color-info: #17a2b8;
+}
+
+@mixin theme-dark {
+  --color-primary: #52a67a;
+  --color-primary-hover: #49805e;
+  --color-primary-active: #49805ed9;
+  --color-secondary: #242424;
+  --color-background: #121212;
+  --color-text: #e0e0e0;
+  --color-text-light: #ffffff;
+  --color-error: #ff6868;
+  --color-success: #76c893;
+  --color-info: #5bc0de;
+}

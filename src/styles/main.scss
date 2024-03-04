@@ -1,0 +1,44 @@
+@import './base.scss';
+
+:root {
+  @include theme-light;
+}
+
+.dark-theme {
+  @include theme-dark;
+}
+
+* {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  font-family: $font-primary, $font-secondary;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition:
+    background-color $transition-default,
+    color $transition-default;
+}
+
+.button {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  border-radius: $border-radius;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color $transition-default;
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  &:active {
+    background-color: var(--color-primary-active);
+  }
+}

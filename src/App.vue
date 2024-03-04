@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import MyHello from './components/MyHello.vue'
+console.log('App')
 </script>
 
 <template>
-  <h1 class="text">Vue Commerce</h1>
-  <h2>App Component</h2>
-  <MyHello />
+  <h1>Vue 3 + Vite + TypeScript + SCSS</h1>
+  <button class="button">Start</button>
 </template>
+
+<style lang="scss">
+@import './styles/main.scss';
+</style>
