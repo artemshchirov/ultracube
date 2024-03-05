@@ -1,16 +1,45 @@
+<script setup lang="ts">
+withDefaults(
+  defineProps<{
+    title?: string
+    imageUrl: string
+    price: number
+    isFavorite?: boolean
+    isAdded?: boolean
+    onClickAdd: () => void
+    onClickFavorite: () => void
+  }>(),
+  {
+    title: 'Product 0',
+    price: 42
+  }
+)
+</script>
+
 <template>
   <article class="product-card">
-    <img src="/like-filled.svg" alt="Like empty" class="product-card__like-icon" />
-    <img src="/sneakers/sneakers-1.jpg" alt="Sneaker" class="product-card__image" />
-    <p class="product-card__title">Men's Nike Blazer Mid Suede Sneakers</p>
-
+    <div class="product-card__container">
+      <img
+        @click="onClickFavorite"
+        :src="isFavorite ? '/like-filled.svg' : '/like-empty.svg'"
+        alt="Like empty"
+        class="product-card__like-icon"
+      />
+      <img :src="imageUrl" alt="Sneaker" class="product-card__image" />
+      <p class="product-card__title">{{ title }}</p>
+    </div>
     <div class="product-card__footer">
       <div class="product-card__price">
         <span class="product-card__price-label">Price:</span>
-        <b class="product-card__price-value">42₪</b>
+        <b class="product-card__price-value">{{ price }}₪</b>
       </div>
 
-      <img src="/plus.svg" alt="Plus" class="product-card__add-icon" />
+      <img
+        @click="onClickAdd"
+        :src="isAdded ? '/checked.svg' : '/plus.svg'"
+        alt="Plus"
+        class="product-card__add-icon"
+      />
     </div>
   </article>
 </template>
@@ -24,7 +53,7 @@
   cursor: pointer;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
     opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cuabic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   background: var(--color-product-card-background);
 
