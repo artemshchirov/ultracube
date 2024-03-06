@@ -46,15 +46,12 @@ withDefaults(
 
 <style scoped lang="scss">
 .product-card {
+  @include transition-default;
   position: relative;
   padding: 32px;
   border: 1px solid var(--color-product-card-border);
   border-radius: 16px;
   cursor: pointer;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-timing-function: cuabic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
   background: var(--color-product-card-background);
 
   &:hover {
@@ -70,7 +67,7 @@ withDefaults(
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 50;
+    z-index: 5;
   }
 
   &__title {

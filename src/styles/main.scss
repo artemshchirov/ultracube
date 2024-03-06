@@ -21,8 +21,8 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   transition:
-    background-color $transition-default,
-    color $transition-default;
+    background-color $transition-ease-in,
+    color $transition-ease-in;
 }
 
 .button {
@@ -32,7 +32,7 @@ body {
   padding: 10px 15px;
   border: none;
   cursor: pointer;
-  transition: background-color $transition-default;
+  transition: background-color $transition-ease-in;
 
   &:hover {
     background-color: var(--color-primary-hover);

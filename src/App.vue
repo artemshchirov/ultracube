@@ -1,11 +1,13 @@
-<script setup lang="ts">
+<script setup>
+import Drawer from './components/Drawer.vue'
+import AppHeader from './components/AppHeader.vue'
 import CardList from './components/CardList.vue'
-import Header from './components/Header.vue'
 </script>
 
 <template>
+  <Drawer />
   <div class="page">
-    <Header />
+    <AppHeader />
     <CardList />
   </div>
 </template>

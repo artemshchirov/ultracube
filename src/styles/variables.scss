@@ -2,7 +2,9 @@ $font-primary: 'Inter', Avenir, Helvetica;
 $font-secondary: Arial, sans-serif;
 
 $border-radius: 4px;
-$transition-default: 0s ease-in;
+$transition-ease-in: 0.2s ease-in;
+$transition-function: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-duration: 150ms;
 
 $shadow-sm: 0 8px 10px -6px rgb(0 0 0 / 0.1);
 $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
@@ -41,4 +43,11 @@ $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
   --color-product-card-border: #ececec;
   --color-page-background: white;
   --color-product-card-background: #fff;
+}
+
+@mixin transition-default {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke,
+    opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: $transition-function;
+  transition-duration: $transition-duration;
 }
