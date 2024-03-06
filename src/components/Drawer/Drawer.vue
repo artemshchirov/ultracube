@@ -1,7 +1,7 @@
 <script setup>
-import Overlay from './Overlay.vue'
-import DrawerHeader from './DrawerHeader.vue'
-import Cart from './Cart.vue'
+import Overlay from '@/components/Overlay.vue'
+import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
+import Cart from '@/components/Cart/Cart.vue'
 </script>
 
 <template>

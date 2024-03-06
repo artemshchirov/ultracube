@@ -1,9 +1,9 @@
 <script setup>
-import Drawer from './components/Drawer.vue'
-import AppHeader from './components/AppHeader.vue'
-import CardList from './components/CardList.vue'
+import Drawer from '@/components/Drawer/Drawer.vue'
+import AppHeader from '@/components/AppHeader.vue'
+import CardList from '@/components/Card/CardList.vue'
 </script>
-
+<!-- TODO: add like and add on main page icons transitions and icons in header -->
 <template>
   <Drawer />
   <div class="page">
@@ -21,3 +21,4 @@ import CardList from './components/CardList.vue'
   box-shadow: $shadow-sm, $shadow-xl;
 }
 </style>
+./components/Card/CardList.vue./components/Drawer/Drawer.vue

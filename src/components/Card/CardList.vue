@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Card from './Card.vue'
+import CardItem from '@/components/Card/CardItem.vue'
 import { reactive } from 'vue'
 
 const images = [
@@ -42,7 +42,7 @@ const onClickFavorite = (index: number) => {
 
     <ul class="products-section__cards">
       <li v-for="(card, index) in cards" :key="index">
-        <Card
+        <CardItem
           :title="card.title"
           :price="card.price"
           :imageUrl="card.imageUrl"
@@ -73,3 +73,4 @@ const onClickFavorite = (index: number) => {
   }
 }
 </style>
+./CardItem.vue

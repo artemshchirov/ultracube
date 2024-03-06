@@ -1,5 +1,5 @@
 <script setup>
-import CloseIcon from './icons/CloseIcon.vue'
+import CloseIcon from '@/components/icons/CloseIcon.vue'
 </script>
 
 <template>
@@ -14,6 +14,7 @@ import CloseIcon from './icons/CloseIcon.vue'
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 32px;
 }
 
 .drawer-header__title {
