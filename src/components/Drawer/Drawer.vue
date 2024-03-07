@@ -1,14 +1,16 @@
 <script setup>
 import Overlay from '@/components/Overlay.vue'
 import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
-import Cart from '@/components/Cart/Cart.vue'
+import CartList from '@/components/Cart/CartList.vue'
+import DrawerFooter from '@/components/Drawer/DrawerFooter.vue'
 </script>
 
 <template>
   <Overlay />
   <div class="drawer">
     <DrawerHeader />
-    <Cart />
+    <CartList />
+    <DrawerFooter />
   </div>
 </template>
 

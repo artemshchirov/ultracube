@@ -3,10 +3,10 @@ import CloseIcon from '@/components/icons/CloseIcon.vue'
 </script>
 
 <template>
-  <div class="drawer-header">
+  <header class="drawer-header">
     <CloseIcon />
     <h2 class="drawer-header__title">Shopping cart</h2>
-  </div>
+  </header>
 </template>
 
 <style scoped lang="scss">

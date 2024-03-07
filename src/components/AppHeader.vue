@@ -32,7 +32,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid var(--color-header-border);
+  border-bottom: 1px solid var(--color-separator);
   padding: 32px 40px;
 
   &__logo {
