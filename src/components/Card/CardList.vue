@@ -37,35 +37,23 @@ const onClickFavorite = (index: number) => {
 </script>
 
 <template>
-  <section class="products-section">
-    <h2 class="products-section__title">All cubes</h2>
-
-    <ul class="products-section__cards">
-      <li v-for="(card, index) in cards" :key="index">
-        <CardItem
-          :title="card.title"
-          :price="card.price"
-          :imageUrl="card.imageUrl"
-          :isFavorite="card.isFavorite"
-          :isAdded="card.isAdded"
-          :onClickAdd="() => onClickAdd(index)"
-          :onClickFavorite="() => onClickFavorite(index)"
-        />
-      </li>
-    </ul>
-  </section>
+  <ul class="products__cards">
+    <li v-for="(card, index) in cards" :key="index">
+      <CardItem
+        :title="card.title"
+        :price="card.price"
+        :imageUrl="card.imageUrl"
+        :isFavorite="card.isFavorite"
+        :isAdded="card.isAdded"
+        :onClickAdd="() => onClickAdd(index)"
+        :onClickFavorite="() => onClickFavorite(index)"
+      />
+    </li>
+  </ul>
 </template>
 
 <style scoped lang="scss">
-.products-section {
-  padding: 40px;
-
-  &__title {
-    font-size: 1.875rem; /* 30px */
-    line-height: 2.25rem; /* 36px */
-    padding-bottom: 32px;
-  }
-
+.products {
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -73,4 +61,3 @@ const onClickFavorite = (index: number) => {
   }
 }
 </style>
-./CardItem.vue
