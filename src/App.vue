@@ -15,7 +15,7 @@ import ProductsSection from './components/ProductsSection.vue'
 <style lang="scss">
 .page {
   width: 80%;
-  margin: 56px auto 0;
+  margin: 56px auto;
   background: var(--color-page-background);
   border-radius: 24px;
   box-shadow: $shadow-sm, $shadow-xl;

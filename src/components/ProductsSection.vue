@@ -1,5 +1,46 @@
 <script setup lang="ts">
+import { onMounted, reactive, ref, watch } from 'vue'
+import axios from 'axios'
+
 import CardList from './Card/CardList.vue'
+
+const products = ref([])
+
+const filters = reactive({
+  sortBy: 'title',
+  searchQuery: ''
+})
+
+const onChangeSelect = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  filters.sortBy = target.value
+}
+
+const onChangeSearchInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  filters.searchQuery = target.value
+}
+
+const fetchProducts = async () => {
+  try {
+    const params: Record<string, string> = {
+      sortBy: filters.sortBy
+    }
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`
+    }
+
+    const { data } = await axios.get('https://12055c66f459ccac.mokky.dev/products', { params })
+    products.value = data
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+onMounted(fetchProducts)
+
+watch(filters, fetchProducts)
 </script>
 
 <template>
@@ -8,20 +49,24 @@ import CardList from './Card/CardList.vue'
       <h2 class="products__title">All cubes</h2>
 
       <div class="products__settings">
-        <select class="products__sort">
+        <select @change="onChangeSelect" class="products__sort">
           <option value="name">Name</option>
-          <option value="price_asc">Price (Low to High)</option>
-          <option value="price_desc">Price (High to Low)</option>
+          <option value="price">Price (Low to High)</option>
+          <option value="-price">Price (High to Low)</option>
         </select>
 
         <div class="products__search">
           <img class="products__search-icon" src="/search.svg" alt="Search" />
-          <input class="products__search-input" placeholder="Search..." />
+          <input
+            @input="onChangeSearchInput"
+            class="products__search-input"
+            placeholder="Search..."
+          />
         </div>
       </div>
     </div>
 
-    <CardList />
+    <CardList :cards="products" />
   </section>
 </template>
 
@@ -33,12 +78,12 @@ import CardList from './Card/CardList.vue'
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 40px;
   }
 
   &__title {
     font-size: 1.875rem; /* 30px */
     line-height: 2.25rem; /* 36px */
-    padding-bottom: 32px;
   }
 
   &__settings {
@@ -77,4 +122,3 @@ import CardList from './Card/CardList.vue'
   }
 }
 </style>
-./CardItem.vue

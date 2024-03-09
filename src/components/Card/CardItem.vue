@@ -10,8 +10,8 @@ withDefaults(
     onClickFavorite: () => void
   }>(),
   {
-    title: 'Product 0',
-    price: 42
+    title: 'Unknown product',
+    price: 9999
   }
 )
 </script>
@@ -47,6 +47,10 @@ withDefaults(
 <style scoped lang="scss">
 .product-card {
   @include transition-default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   position: relative;
   padding: 32px;
   border: 1px solid var(--color-product-card-border);
