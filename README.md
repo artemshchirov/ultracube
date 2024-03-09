@@ -1,46 +1,49 @@
 # Rubik's Cube Shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to `rubiks-cube-shop`, a fully functional online store built with Vue 3, showcasing the best practices in developing e-commerce platforms. This project leverages the latest web technologies to provide a seamless shopping experience, from browsing products to checking out.
 
-## Recommended IDE Setup
+## 🚀 Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- **Data Management**: Efficiently passing data between components using Vue's reactivity system.
+- **API Communication**: Performing and handling API requests seamlessly with Axios, managing JSON data like a pro.
+- **Routing**: Navigating through pages with ease using Vue Router, enriching the user experience.
+- **Styling**: Incorporating TailwindCSS for a modern, utility-first approach to styling application.
+- **Animations**: Adding life to project lists and interactions with @formkit/auto-animate, making UI dynamic and engaging.
+- **Best Practices**: Utilizing Vue 3's Composition API / Options API for organizing and reusing logic, ensuring codebase is clean and maintainable.
 
-## Type Support for `.vue` Imports in TS
+## ⚙️ Technology Stack
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- Vue 3
+- Vue Router
+- TailwindCSS
+- Axios
+- @formkit/auto-animate
+- Composition API / Options API
+- ESLint
+- Prettier
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 📘 Getting Started
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+To get started with this project, clone the repository and install the dependencies:
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+git clone https://github.com/artemshchirov/rubiks-cube-shop
+cd rubiks-cube-shop
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Run the project locally
 
-```sh
-npm run dev
+```bash
+npm run serve
 ```
 
-### Type-Check, Compile and Minify for Production
+Navigate to `http://localhost:8080` to view the application
 
-```sh
-npm run build
-```
+## 🛠️ Contribution
 
-### Lint with [ESLint](https://eslint.org/)
+Contributions are welcome!
 
-```sh
-npm run lint
-```
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
