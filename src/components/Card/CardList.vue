@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import CardItem from '@/components/Card/CardItem.vue'
-
-type Card = {
-  id: number
-  title: string
-  price: number
-  imageUrl: string
-}
+import type { Card } from '@/interfaces/card'
 
 const { cards } = defineProps<{
   cards: Card[]
@@ -28,6 +22,7 @@ const onClickFavorite = () => {
         :title="card.title"
         :price="card.price"
         :imageUrl="card.imageUrl"
+        :isFavorite="card.isFavorite"
         :onClickAdd="() => onClickAdd()"
         :onClickFavorite="() => onClickFavorite()"
       />

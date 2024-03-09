@@ -1,6 +1,6 @@
 # Rubik's Cube Shop
 
-Welcome to `rubiks-cube-shop`, a fully functional online store built with Vue 3, showcasing the best practices in developing e-commerce platforms. This project leverages the latest web technologies to provide a seamless shopping experience, from browsing products to checking out.
+Welcome to `ultracube`, a fully functional online store built with Vue 3, showcasing the best practices in developing e-commerce platforms. This project leverages the latest web technologies to provide a seamless shopping experience, from browsing products to checking out.
 
 ## 🚀 Features
 
@@ -27,8 +27,8 @@ Welcome to `rubiks-cube-shop`, a fully functional online store built with Vue 3,
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/artemshchirov/rubiks-cube-shop
-cd rubiks-cube-shop
+git clone https://github.com/artemshchirov/ultracube
+cd ultracube
 npm install
 ```
 

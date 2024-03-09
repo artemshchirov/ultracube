@@ -3,7 +3,7 @@
 import AppHeader from '@/components/AppHeader.vue'
 import ProductsSection from './components/ProductsSection.vue'
 </script>
-<!-- TODO: add like and add on main page icons transitions and icons in header -->
+
 <template>
   <!-- <Drawer /> -->
   <div class="page">
@@ -21,3 +21,5 @@ import ProductsSection from './components/ProductsSection.vue'
   box-shadow: $shadow-sm, $shadow-xl;
 }
 </style>
+
+<!-- TODO: add like and add on main page icons transitions and icons in header -->

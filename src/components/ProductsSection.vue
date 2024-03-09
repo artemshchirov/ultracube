@@ -3,8 +3,11 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 
 import CardList from './Card/CardList.vue'
+import type { Product } from '@/interfaces/product'
+import type { Card } from '@/interfaces/card'
+import type { Favorite } from '@/interfaces/favorite'
 
-const products = ref([])
+const products = ref<Card[]>([])
 
 const filters = reactive({
   sortBy: 'title',
@@ -21,6 +24,30 @@ const onChangeSearchInput = (event: Event) => {
   filters.searchQuery = target.value
 }
 
+const fetchFavorites = async () => {
+  try {
+    const { data: favoritesData } = await axios.get<Favorite[]>(
+      'https://12055c66f459ccac.mokky.dev/favorites'
+    )
+
+    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
+
+    products.value = products.value.map((product: Product) => {
+      const favorite = favoritesMap.get(product.id)
+
+      return {
+        ...product,
+        isFavorite: favorite !== undefined,
+        favoriteId: favorite ? favorite.id : null,
+        isAddedToCart: false
+      }
+    })
+    console.log(products.value)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 const fetchProducts = async () => {
   try {
     const params: Record<string, string> = {
@@ -32,13 +59,20 @@ const fetchProducts = async () => {
     }
 
     const { data } = await axios.get('https://12055c66f459ccac.mokky.dev/products', { params })
-    products.value = data
+    products.value = data.map((product: any) => ({
+      ...product,
+      isFavorite: false,
+      isAddedToCart: false
+    }))
   } catch (err) {
     console.error(err)
   }
 }
 
-onMounted(fetchProducts)
+onMounted(async () => {
+  await fetchProducts()
+  await fetchFavorites()
+})
 
 watch(filters, fetchProducts)
 </script>
