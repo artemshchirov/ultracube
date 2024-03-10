@@ -4,7 +4,7 @@
       <div class="drawer-footer__price">
         <span class="drawer-footer__label">Total:</span>
         <div class="drawer-footer__separator" />
-        <b class="drawer-footer__amount">424</b>
+        <b class="drawer-footer__amount">42</b>
       </div>
       <div class="drawer-footer__price">
         <span class="drawer-footer__label">Discount 5%:</span>

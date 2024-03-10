@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { onMounted, provide, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 
 import CardList from './Card/CardList.vue'
 import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
+
+const API_URL = 'https://12055c66f459ccac.mokky.dev'
 
 const products = ref<Product[]>([])
 
@@ -25,9 +27,7 @@ const onChangeSearchInput = (event: Event) => {
 
 const fetchFavorites = async () => {
   try {
-    const { data: favoritesData } = await axios.get<Favorite[]>(
-      'https://12055c66f459ccac.mokky.dev/favorites'
-    )
+    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
 
     const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
 
@@ -41,15 +41,26 @@ const fetchFavorites = async () => {
         isAddedToCart: false
       }
     })
-    console.log(products.value)
   } catch (err) {
     console.error(err)
   }
 }
 
 const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
-  product.isFavorite = !product.isFavorite
-  console.log('Added to favorite', product)
+  try {
+    if (!product.isFavorite) {
+      const newFavoriteProductData = { parentId: product.id }
+      product.isFavorite = true
+      const { data } = await axios.post(`${API_URL}/favorites`, newFavoriteProductData)
+      product.favoriteId = data.id
+    } else {
+      product.isFavorite = false
+      await axios.delete(`${API_URL}/favorites/${product.favoriteId}`)
+      product.favoriteId = null
+    }
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 const fetchProducts = async () => {
@@ -66,6 +77,7 @@ const fetchProducts = async () => {
     products.value = data.map((product: any) => ({
       ...product,
       isFavorite: false,
+      favoriteId: null,
       isAddedToCart: false
     }))
   } catch (err) {

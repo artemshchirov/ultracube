@@ -11,7 +11,7 @@
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__item">
-          <img src="/cart.svg" alt="Cart" class="nav__icon" /><b class="nav__item-text">424₪</b>
+          <img src="/cart.svg" alt="Cart" class="nav__icon" /><b class="nav__item-text">42₪</b>
         </li>
         <li class="nav__item">
           <img src="/heart.svg" alt="Wishlist" class="nav__icon" /><span class="nav__item-text"
