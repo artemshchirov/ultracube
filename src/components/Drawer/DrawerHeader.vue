@@ -1,10 +1,14 @@
 <script setup>
+import { inject } from 'vue'
+
 import CloseIcon from '@/components/icons/CloseIcon.vue'
+
+const closeDrawer = inject('cartActions').closeDrawer
 </script>
 
 <template>
   <header class="drawer-header">
-    <CloseIcon />
+    <CloseIcon @click="closeDrawer" />
     <h2 class="drawer-header__title">Shopping cart</h2>
   </header>
 </template>

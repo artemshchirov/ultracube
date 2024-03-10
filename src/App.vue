@@ -1,13 +1,25 @@
 <script setup>
-// import Drawer from '@/components/Drawer/Drawer.vue'
+import { ref, provide } from 'vue'
+
+import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
-import Products from './components/Products.vue'
+import Products from '@/components/Products.vue'
+
+const isDrawerOpen = ref(false)
+
+const openDrawer = () => (isDrawerOpen.value = true)
+const closeDrawer = () => (isDrawerOpen.value = false)
+
+provide('cartActions', {
+  openDrawer,
+  closeDrawer
+})
 </script>
 
 <template>
-  <!-- <Drawer /> -->
+  <Drawer v-if="isDrawerOpen" />
   <div class="page">
-    <AppHeader />
+    <AppHeader @open-drawer="openDrawer" />
     <Products />
   </div>
 </template>

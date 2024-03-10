@@ -116,7 +116,7 @@ watch(filters, fetchProducts)
       </div>
     </div>
 
-    <CardList :products="products" @addToFavorite="addToFavorite" />
+    <CardList :products="products" @add-to-favorite="addToFavorite" />
   </section>
 </template>
 
