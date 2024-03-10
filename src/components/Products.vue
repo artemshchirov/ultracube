@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, provide, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 
 import CardList from './Card/CardList.vue'
+import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
-import type { Card } from '@/interfaces/card'
-import type { Favorite } from '@/interfaces/favorite'
 
-const products = ref<Card[]>([])
+const products = ref<Product[]>([])
 
 const filters = reactive({
   sortBy: 'title',
@@ -46,6 +45,11 @@ const fetchFavorites = async () => {
   } catch (err) {
     console.error(err)
   }
+}
+
+const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
+  product.isFavorite = !product.isFavorite
+  console.log('Added to favorite', product)
 }
 
 const fetchProducts = async () => {
@@ -100,7 +104,7 @@ watch(filters, fetchProducts)
       </div>
     </div>
 
-    <CardList :cards="products" />
+    <CardList :products="products" @addToFavorite="addToFavorite" />
   </section>
 </template>
 

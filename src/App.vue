@@ -1,14 +1,14 @@
 <script setup>
 // import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
-import ProductsSection from './components/ProductsSection.vue'
+import Products from './components/Products.vue'
 </script>
 
 <template>
   <!-- <Drawer /> -->
   <div class="page">
     <AppHeader />
-    <ProductsSection />
+    <Products />
   </div>
 </template>
 
@@ -22,4 +22,4 @@ import ProductsSection from './components/ProductsSection.vue'
 }
 </style>
 
-<!-- TODO: add like and add on main page icons transitions and icons in header -->
+<!-- TODO: add like and add on main page icons transitions and icons in header -->./components/Products.vue

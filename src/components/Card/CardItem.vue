@@ -1,19 +1,7 @@
 <script setup lang="ts">
-withDefaults(
-  defineProps<{
-    title?: string
-    imageUrl: string
-    price: number
-    isFavorite?: boolean
-    isAdded?: boolean
-    onClickAdd: () => void
-    onClickFavorite: () => void
-  }>(),
-  {
-    title: 'Unknown product',
-    price: 9999
-  }
-)
+import type { Product } from '@/interfaces/product'
+
+defineProps<Product>()
 </script>
 
 <template>
@@ -34,12 +22,7 @@ withDefaults(
         <b class="product-card__price-value">{{ price }}₪</b>
       </div>
 
-      <img
-        @click="onClickAdd"
-        :src="isAdded ? '/checked.svg' : '/plus.svg'"
-        alt="Plus"
-        class="product-card__add-icon"
-      />
+      <img @click="onClickFavorite" src="/plus.svg" alt="Plus" class="product-card__add-icon" />
     </div>
   </article>
 </template>

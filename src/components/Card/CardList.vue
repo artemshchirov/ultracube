@@ -1,31 +1,18 @@
 <script setup lang="ts">
 import CardItem from '@/components/Card/CardItem.vue'
-import type { Card } from '@/interfaces/card'
+import type { Product } from '@/interfaces/product'
 
-const { cards } = defineProps<{
-  cards: Card[]
+defineProps<{
+  products: Product[]
 }>()
 
-const onClickAdd = () => {
-  alert('Added')
-}
-
-const onClickFavorite = () => {
-  alert('Favorite')
-}
+const emit = defineEmits(['addToFavorite'])
 </script>
 
 <template>
   <ul class="products__cards">
-    <li v-for="card in cards" :key="card.id">
-      <CardItem
-        :title="card.title"
-        :price="card.price"
-        :imageUrl="card.imageUrl"
-        :isFavorite="card.isFavorite"
-        :onClickAdd="() => onClickAdd()"
-        :onClickFavorite="() => onClickFavorite()"
-      />
+    <li v-for="product in products" :key="product.id">
+      <CardItem v-bind="product" :onClickFavorite="() => emit('addToFavorite', product)" />
     </li>
   </ul>
 </template>
