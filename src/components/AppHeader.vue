@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineProps<{
+  totalPrice: number
+}>()
+
 const emit = defineEmits(['openDrawer'])
 </script>
 
@@ -16,7 +20,7 @@ const emit = defineEmits(['openDrawer'])
       <ul class="nav__list">
         <li class="nav__item" @click="() => emit('openDrawer')">
           <img src="/cart.svg" alt="Cart" class="nav__icon" />
-          <b class="nav__item-text">42₪</b>
+          <b class="nav__item-text">{{ totalPrice }}₪</b>
         </li>
         <li class="nav__item">
           <img src="/heart.svg" alt="Wishlist" class="nav__icon" /><span class="nav__item-text"

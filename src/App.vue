@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref, provide, type Ref } from 'vue'
+import { ref, provide, type Ref, computed } from 'vue'
 
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import Products from '@/components/Products.vue'
 import type { Product } from './interfaces/product'
 
-export interface CartActions {
+export interface Cart {
   cart: Ref<Product[]>
+  totalPrice: Ref<number>
+  discountPrice: Ref<number>
   onClickAddCard: (product: Product) => void
   addToCart: (product: Product) => void
   removeFromCart: (product: Product) => void
@@ -37,11 +39,18 @@ const isDrawerOpen = ref(false)
 const openDrawer = () => (isDrawerOpen.value = true)
 const closeDrawer = () => (isDrawerOpen.value = false)
 
-provide<CartActions>('cart', {
+const totalPrice = computed(() => cart.value.reduce((acc, product) => acc + product.price, 0))
+
+const discount = 10
+const discountPrice = computed(() => Math.round((totalPrice.value * discount) / 100))
+
+provide<Cart>('cart', {
   cart,
-  onClickAddCard,
+  totalPrice,
+  discountPrice,
   addToCart,
   removeFromCart,
+  onClickAddCard,
   openDrawer,
   closeDrawer
 })
@@ -50,7 +59,7 @@ provide<CartActions>('cart', {
 <template>
   <Drawer v-if="isDrawerOpen" />
   <div class="page">
-    <AppHeader @open-drawer="openDrawer" />
+    <AppHeader @open-drawer="openDrawer" :total-price="totalPrice" />
     <Products />
   </div>
 </template>

@@ -1,19 +1,28 @@
+<script setup lang="ts">
+import type { Cart } from '@/App.vue'
+import { inject } from 'vue'
+
+const { totalPrice, discountPrice } = inject('cart') as Cart
+</script>
+
 <template>
   <footer class="drawer-footer">
     <div class="drawer-footer__container">
       <div class="drawer-footer__price">
         <span class="drawer-footer__label">Total:</span>
         <div class="drawer-footer__separator" />
-        <b class="drawer-footer__amount">42</b>
+        <b class="drawer-footer__amount">{{ totalPrice }}₪</b>
       </div>
       <div class="drawer-footer__price">
-        <span class="drawer-footer__label">Discount 5%:</span>
+        <span class="drawer-footer__label">Discount 10%:</span>
         <div class="drawer-footer__separator" />
-        <b class="drawer-footer__amount">21₪</b>
+        <b class="drawer-footer__amount">{{ discountPrice }}₪</b>
       </div>
     </div>
 
-    <button disabled class="drawer-footer__checkout-btn">Checkout</button>
+    <button disabled class="drawer-footer__checkout-btn">
+      Checkout ({{ totalPrice - discountPrice }}₪)
+    </button>
   </footer>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CartActions } from '@/App.vue'
+import type { Cart } from '@/App.vue'
 import CardItem from '@/components/Card/CardItem.vue'
 import type { Product } from '@/interfaces/product'
 import { inject } from 'vue'
@@ -9,7 +9,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits(['addToFavorite'])
-const { onClickAddCard } = inject('cart') as CartActions
+const { onClickAddCard } = inject('cart') as Cart
 </script>
 
 <template>

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { inject } from 'vue'
 import CartItem from '@/components/Cart/CartItem.vue'
-import type { CartActions } from '@/App.vue'
+import type { Cart } from '@/App.vue'
 
-const { cart, removeFromCart } = inject('cart') as CartActions
+const { cart, removeFromCart } = inject('cart') as Cart
 </script>
 
 <template>

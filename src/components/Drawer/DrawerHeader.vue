@@ -2,9 +2,9 @@
 import { inject } from 'vue'
 
 import CloseIcon from '@/components/icons/CloseIcon.vue'
-import type { CartActions } from '@/App.vue'
+import type { Cart } from '@/App.vue'
 
-const closeDrawer = (inject('cart') as CartActions).closeDrawer
+const closeDrawer = (inject('cart') as Cart).closeDrawer
 </script>
 
 <template>
