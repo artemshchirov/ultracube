@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import type { Cart } from '@/interfaces/cart'
 import { inject } from 'vue'
-
-import type { Cart } from '@/App.vue'
 
 defineProps<{
   title: string
@@ -9,7 +8,7 @@ defineProps<{
   imageUrl: string
 }>()
 
-const closeDrawer = (inject('cart') as Cart).closeDrawer
+const { closeDrawer } = inject('cart') as Cart
 </script>
 
 <template>

@@ -1,96 +1,13 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
-import axios from 'axios'
-
-import CardList from './Card/CardList.vue'
-import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
+import CardList from './Card/CardList.vue'
 
-const API_URL = 'https://12055c66f459ccac.mokky.dev'
+defineProps<{
+  products: Product[]
+  apiUrl: string
+}>()
 
-const products = ref<Product[]>([])
-
-const filters = reactive({
-  sortBy: 'title',
-  searchQuery: ''
-})
-
-const onChangeSelect = (event: Event) => {
-  const target = event.target as HTMLSelectElement
-  filters.sortBy = target.value
-}
-
-const onChangeSearchInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  filters.searchQuery = target.value
-}
-
-const fetchFavorites = async () => {
-  try {
-    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
-
-    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
-
-    products.value = products.value.map((product: Product) => {
-      const favorite = favoritesMap.get(product.id)
-
-      return {
-        ...product,
-        isFavorite: favorite !== undefined,
-        favoriteId: favorite ? favorite.id : null,
-        isAdded: false
-      }
-    })
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
-  try {
-    if (!product.isFavorite) {
-      const newFavoriteProductData = { parentId: product.id }
-      product.isFavorite = true
-      const { data } = await axios.post(`${API_URL}/favorites`, newFavoriteProductData)
-      product.favoriteId = data.id
-    } else {
-      product.isFavorite = false
-      await axios.delete(`${API_URL}/favorites/${product.favoriteId}`)
-      product.favoriteId = null
-    }
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-const fetchProducts = async () => {
-  try {
-    const params: Record<string, string> = {
-      sortBy: filters.sortBy
-    }
-
-    if (filters.searchQuery) {
-      params.title = `*${filters.searchQuery}*`
-    }
-
-    const { data } = await axios.get(`${API_URL}/products`, { params })
-    products.value = data.map((product: Product) => ({
-      ...product,
-      isFavorite: false,
-      favoriteId: null,
-      isAdded: false
-    }))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-onMounted(async () => {
-  await fetchProducts()
-  await fetchFavorites()
-})
-
-watch(filters, fetchProducts)
+const emit = defineEmits(['onChangeSelect', 'onChangeSearchInput'])
 </script>
 
 <template>
@@ -99,7 +16,7 @@ watch(filters, fetchProducts)
       <h2 class="products__title">All cubes</h2>
 
       <div class="products__settings">
-        <select @change="onChangeSelect" class="products__sort">
+        <select @change="emit('onChangeSelect')" class="products__sort">
           <option value="name">Name</option>
           <option value="price">Price (Low to High)</option>
           <option value="-price">Price (High to Low)</option>
@@ -108,7 +25,7 @@ watch(filters, fetchProducts)
         <div class="products__search">
           <img class="products__search-icon" src="/search.svg" alt="Search" />
           <input
-            @input="onChangeSearchInput"
+            @input="emit('onChangeSearchInput')"
             class="products__search-input"
             placeholder="Search..."
           />
@@ -116,7 +33,7 @@ watch(filters, fetchProducts)
       </div>
     </div>
 
-    <CardList :products="products" @add-to-favorite="addToFavorite" />
+    <CardList :products="products" />
   </section>
 </template>
 

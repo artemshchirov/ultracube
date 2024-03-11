@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import type { Cart } from '@/App.vue'
-import CardItem from '@/components/Card/CardItem.vue'
-import type { Product } from '@/interfaces/product'
 import { inject } from 'vue'
+
+import CardItem from '@/components/Card/CardItem.vue'
+import type { Cart } from '@/interfaces/cart'
+import type { AddToFavoriteFunction } from '@/interfaces/favorite'
+import type { Product } from '@/interfaces/product'
 
 defineProps<{
   products: Product[]
 }>()
 
-const emit = defineEmits(['addToFavorite'])
+const addToFavorite = inject('addToFavorite') as AddToFavoriteFunction
 const { onClickAddCard } = inject('cart') as Cart
 </script>
 
@@ -20,7 +22,7 @@ const { onClickAddCard } = inject('cart') as Cart
         :image-url="product.imageUrl"
         :title="product.title"
         :price="product.price"
-        :on-click-favorite="() => emit('addToFavorite', product)"
+        :on-click-favorite="() => addToFavorite(product)"
         :on-click-add="() => onClickAddCard(product)"
         :is-added="product.isAdded"
       />

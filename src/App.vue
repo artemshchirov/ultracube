@@ -1,31 +1,96 @@
 <script setup lang="ts">
-import { ref, provide, type Ref, computed } from 'vue'
+import { ref, provide, computed, watch, onMounted, reactive } from 'vue'
 
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import Products from '@/components/Products.vue'
 import type { Product } from './interfaces/product'
 import axios from 'axios'
-
-export interface Cart {
-  cart: Ref<Product[]>
-  totalPrice: Ref<number>
-  discountPrice: Ref<number>
-  totalPriceAfterDiscount: Ref<number>
-  isLoadingOrder: Ref<boolean>
-  onClickAddCard: (product: Product) => void
-  addToCart: (product: Product) => void
-  removeFromCart: (product: Product) => void
-  createOrder: () => Promise<void>
-  openDrawer: () => void
-  closeDrawer: () => void
-}
+import type { AddToFavoriteFunction, Favorite } from './interfaces/favorite'
+import type { Cart } from './interfaces/cart'
 
 const API_URL = 'https://12055c66f459ccac.mokky.dev'
 
 const cart = ref<Product[]>([])
 
 const products = ref<Product[]>([])
+
+const filters = reactive({
+  sortBy: 'title',
+  searchQuery: ''
+})
+
+const onChangeSelect = (event: Event) => {
+  const target = event.target as HTMLSelectElement
+  filters.sortBy = target.value
+}
+
+const onChangeSearchInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  filters.searchQuery = target.value
+}
+
+const fetchFavorites = async () => {
+  try {
+    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
+
+    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
+
+    products.value = products.value.map((product: Product) => {
+      const favorite = favoritesMap.get(product.id)
+
+      return {
+        ...product,
+        isFavorite: favorite !== undefined,
+        favoriteId: favorite ? favorite.id : null,
+        isAdded: false
+      }
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const fetchProducts = async () => {
+  try {
+    const params: Record<string, string> = {
+      sortBy: filters.sortBy
+    }
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`
+    }
+
+    const { data } = await axios.get(`${API_URL}/products`, { params })
+    products.value = data.map((product: Product) => ({
+      ...product,
+      isFavorite: false,
+      favoriteId: null,
+      isAdded: false
+    }))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
+  try {
+    if (!product.isFavorite) {
+      const newFavoriteProductData = { parentId: product.id }
+      product.isFavorite = true
+      const { data } = await axios.post(`${API_URL}/favorites`, newFavoriteProductData)
+      product.favoriteId = data.id
+    } else {
+      product.isFavorite = false
+      await axios.delete(`${API_URL}/favorites/${product.favoriteId}`)
+      product.favoriteId = null
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+watch(filters, fetchProducts)
 
 const isLoadingOrder = ref(false)
 
@@ -50,6 +115,11 @@ const removeFromCart = (product: Product) => {
   product.isAdded = false
 }
 
+const onClickAddCard = (product: Product) => {
+  if (!product.isAdded) addToCart(product)
+  else removeFromCart(product)
+}
+
 const createOrder = async () => {
   try {
     isLoadingOrder.value = true
@@ -61,8 +131,6 @@ const createOrder = async () => {
       totalPriceAfterDiscount: totalPriceAfterDiscount.value
     })
 
-    cart.value.forEach((product) => (product.isAdded = false))
-
     cart.value = []
 
     return data
@@ -73,15 +141,28 @@ const createOrder = async () => {
   }
 }
 
-const onClickAddCard = (product: Product) => {
-  if (!product.isAdded) addToCart(product)
-  else removeFromCart(product)
-}
+watch(
+  cart,
+  () => {
+    localStorage.setItem('cart', JSON.stringify(cart.value))
+  },
+  {
+    deep: true
+  }
+)
 
-// TODO: Save cart in localStorage
-// watch(cart, () => {
-//   localStorage.setItem('cart', JSON.stringify(cart.value))
-// })
+watch(
+  cart,
+  () => {
+    products.value = products.value.map((product) => ({
+      ...product,
+      isAdded: cart.value.some((cartItem) => cartItem.id === product.id)
+    }))
+  },
+  { deep: true, immediate: true }
+)
+
+provide('addToFavorite', addToFavorite)
 
 provide<Cart>('cart', {
   cart,
@@ -97,14 +178,31 @@ provide<Cart>('cart', {
   closeDrawer
 })
 
-provide('API_URL', API_URL)
+onMounted(async () => {
+  const localCart = localStorage.getItem('cart')
+  cart.value = localCart ? JSON.parse(localCart) : []
+  console.log('cart', cart.value)
+
+  await fetchProducts()
+  await fetchFavorites()
+
+  products.value = products.value.map((product) => ({
+    ...product,
+    isAdded: cart.value.some((cartItem) => cartItem.id === product.id)
+  }))
+})
 </script>
 
 <template>
   <Drawer v-if="isDrawerOpen" />
   <div class="page">
     <AppHeader @open-drawer="openDrawer" :total-price="totalPrice" />
-    <Products :products="products" :api-url="API_URL" />
+    <Products
+      :products="products"
+      :api-url="API_URL"
+      @on-change-select="onChangeSelect"
+      @on-change-search-input="onChangeSearchInput"
+    />
   </div>
 </template>
 
