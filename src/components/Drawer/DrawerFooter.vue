@@ -1,27 +1,38 @@
 <script setup lang="ts">
 import type { Cart } from '@/App.vue'
-import { inject } from 'vue'
+import { computed, inject } from 'vue'
 
-const { totalPrice, discountPrice } = inject('cart') as Cart
+const { totalPrice, discountPrice, totalPriceAfterDiscount, isLoadingOrder } = inject(
+  'cart'
+) as Cart
+
+const { createOrder } = inject('cart') as Cart
+
+const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoadingOrder.value)
 </script>
 
 <template>
   <footer class="drawer-footer">
     <div class="drawer-footer__container">
       <div class="drawer-footer__price">
-        <span class="drawer-footer__label">Total:</span>
+        <span class="drawer-footer__label">Price:</span>
         <div class="drawer-footer__separator" />
-        <b class="drawer-footer__amount">{{ totalPrice }}₪</b>
+        <p class="drawer-footer__amount">{{ totalPrice }}₪</p>
       </div>
       <div class="drawer-footer__price">
         <span class="drawer-footer__label">Discount 10%:</span>
         <div class="drawer-footer__separator" />
-        <b class="drawer-footer__amount">{{ discountPrice }}₪</b>
+        <p class="drawer-footer__amount">{{ discountPrice }}₪</p>
+      </div>
+      <div class="drawer-footer__price drawer-footer__price_total">
+        <span class="drawer-footer__label">Total Price:</span>
+        <div class="drawer-footer__separator" />
+        <b class="drawer-footer__amount">{{ totalPriceAfterDiscount }}₪</b>
       </div>
     </div>
 
-    <button disabled class="drawer-footer__checkout-btn">
-      Checkout ({{ totalPrice - discountPrice }}₪)
+    <button @click="createOrder" :disabled="isButtonDisabled" class="drawer-footer__checkout-btn">
+      Checkout {{ totalPriceAfterDiscount ? `(${totalPriceAfterDiscount}₪)` : '' }}
     </button>
   </footer>
 </template>
@@ -42,6 +53,10 @@ const { totalPrice, discountPrice } = inject('cart') as Cart
   &__price {
     display: flex;
     gap: 8px;
+
+    &_total {
+      margin-top: 8px;
+    }
   }
 
   &__separator {
