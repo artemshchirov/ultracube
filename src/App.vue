@@ -1,16 +1,38 @@
-<script setup>
-import { ref, provide } from 'vue'
+<script setup lang="ts">
+import { ref, provide, type Ref } from 'vue'
 
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import Products from '@/components/Products.vue'
+import type { Product } from './interfaces/product'
+
+export interface CartActions {
+  cart: Ref<Product[]>
+  addToCart: (product: Product) => void
+  openDrawer: () => void
+  closeDrawer: () => void
+}
+
+const cart = ref<Product[]>([])
+
+const addToCart = (product: Product) => {
+  if (!product.isAdded) {
+    cart.value.push(product)
+    product.isAdded = true
+  } else {
+    cart.value.splice(cart.value.indexOf(product), 1)
+    product.isAdded = false
+  }
+}
 
 const isDrawerOpen = ref(false)
 
 const openDrawer = () => (isDrawerOpen.value = true)
 const closeDrawer = () => (isDrawerOpen.value = false)
 
-provide('cartActions', {
+provide<CartActions>('cart', {
+  cart,
+  addToCart,
   openDrawer,
   closeDrawer
 })
@@ -33,5 +55,3 @@ provide('cartActions', {
   box-shadow: $shadow-sm, $shadow-xl;
 }
 </style>
-
-<!-- TODO: add like and add on main page icons transitions and icons in header -->./components/Products.vue

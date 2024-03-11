@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Overlay from '@/components/Overlay.vue'
 import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
 import CartList from '@/components/Cart/CartList.vue'

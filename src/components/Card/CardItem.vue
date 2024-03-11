@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Product } from '@/interfaces/product'
 
-defineProps<Product>()
+defineProps<Partial<Product>>()
 </script>
 
 <template>
@@ -22,7 +22,12 @@ defineProps<Product>()
         <b class="product-card__price-value">{{ price }}₪</b>
       </div>
 
-      <img @click="onClickFavorite" src="/plus.svg" alt="Plus" class="product-card__add-icon" />
+      <img
+        @click="onClickAdd"
+        :src="isAdded ? '/checked.svg' : '/plus.svg'"
+        alt="Plus"
+        class="product-card__add-icon"
+      />
     </div>
   </article>
 </template>
@@ -38,7 +43,6 @@ defineProps<Product>()
   padding: 32px;
   border: 1px solid var(--color-product-card-border);
   border-radius: 16px;
-  cursor: pointer;
   background: var(--color-product-card-background);
 
   &:hover {
@@ -55,6 +59,7 @@ defineProps<Product>()
     top: 0;
     left: 0;
     z-index: 5;
+    cursor: pointer;
   }
 
   &__title {
@@ -74,6 +79,10 @@ defineProps<Product>()
     &-label {
       color: var(--color-text-secondary);
     }
+  }
+
+  &__add-icon {
+    cursor: pointer;
   }
 }
 </style>

@@ -1,15 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Product } from '@/interfaces/product'
+
+defineProps<Partial<Product>>()
+</script>
 
 <template>
   <li class="cart-item">
     <article class="cart-item__card">
-      <img src="/sneakers/sneakers-1.jpg" alt="Sneaker" class="cart-item__image" />
+      <img :src="imageUrl" :alt="title" class="cart-item__image" />
 
       <div class="cart-item__container">
-        <p class="cart-item__title">Product 1</p>
+        <p class="cart-item__title">{{ title }}</p>
 
         <div class="cart-item__price">
-          <b class="cart-item__price-value">42₪</b>
+          <b class="cart-item__price-value">{{ price }}₪</b>
           <img src="/close.svg" alt="Plus" class="cart-item__price-close-icon" />
         </div>
       </div>
@@ -46,6 +50,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 8px;
 
     &-close-icon {
       @include transition-default;

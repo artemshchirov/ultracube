@@ -38,7 +38,7 @@ const fetchFavorites = async () => {
         ...product,
         isFavorite: favorite !== undefined,
         favoriteId: favorite ? favorite.id : null,
-        isAddedToCart: false
+        isAdded: false
       }
     })
   } catch (err) {
@@ -73,12 +73,12 @@ const fetchProducts = async () => {
       params.title = `*${filters.searchQuery}*`
     }
 
-    const { data } = await axios.get('https://12055c66f459ccac.mokky.dev/products', { params })
-    products.value = data.map((product: any) => ({
+    const { data } = await axios.get(`${API_URL}/products`, { params })
+    products.value = data.map((product: Product) => ({
       ...product,
       isFavorite: false,
       favoriteId: null,
-      isAddedToCart: false
+      isAdded: false
     }))
   } catch (err) {
     console.error(err)
