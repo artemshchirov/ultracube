@@ -15,14 +15,18 @@ const { totalPrice } = inject('cart') as Cart
   <Overlay />
   <div class="drawer">
     <DrawerHeader />
+
     <InfoBlock
       v-if="!totalPrice"
       title="Cart is empty"
       description="Add at least one cube to make an order"
       imageUrl="/package-icon.png"
     />
-    <CartList v-if="totalPrice" />
-    <DrawerFooter v-if="totalPrice" :totalPrice="totalPrice" />
+
+    <div v-else>
+      <CartList />
+      <DrawerFooter :totalPrice="totalPrice" />
+    </div>
   </div>
 </template>
 
