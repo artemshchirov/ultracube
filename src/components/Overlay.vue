@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Cart } from '@/App.vue'
+import type { Cart } from '@/interfaces/cart'
 import { inject } from 'vue'
 
 const { closeDrawer } = inject('cart') as Cart

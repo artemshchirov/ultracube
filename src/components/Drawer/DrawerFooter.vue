@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Cart } from '@/App.vue'
+import type { Cart } from '@/interfaces/cart'
 import { computed, inject } from 'vue'
 
 defineProps<{

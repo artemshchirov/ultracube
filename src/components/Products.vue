@@ -16,7 +16,7 @@ const emit = defineEmits(['onChangeSelect', 'onChangeSearchInput'])
       <h2 class="products__title">All cubes</h2>
 
       <div class="products__settings">
-        <select @change="emit('onChangeSelect')" class="products__sort">
+        <select @change="($event) => emit('onChangeSelect', $event)" class="products__sort">
           <option value="name">Name</option>
           <option value="price">Price (Low to High)</option>
           <option value="-price">Price (High to Low)</option>
@@ -25,7 +25,7 @@ const emit = defineEmits(['onChangeSelect', 'onChangeSearchInput'])
         <div class="products__search">
           <img class="products__search-icon" src="/search.svg" alt="Search" />
           <input
-            @input="emit('onChangeSearchInput')"
+            @input="($event) => emit('onChangeSearchInput', $event)"
             class="products__search-input"
             placeholder="Search..."
           />

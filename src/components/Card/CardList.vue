@@ -15,7 +15,7 @@ const { onClickAddCard } = inject('cart') as Cart
 </script>
 
 <template>
-  <ul class="products__cards">
+  <ul class="products__cards" v-auto-animate>
     <li v-for="product in products" :key="product.id">
       <CardItem
         :is-favorite="product.isFavorite"

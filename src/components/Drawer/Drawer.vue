@@ -6,7 +6,7 @@ import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
 import CartList from '@/components/Cart/CartList.vue'
 import DrawerFooter from '@/components/Drawer/DrawerFooter.vue'
 import InfoBlock from '../InfoBlock.vue'
-import type { Cart } from '@/App.vue'
+import type { Cart } from '@/interfaces/cart'
 
 const { totalPrice } = inject('cart') as Cart
 </script>
@@ -23,7 +23,7 @@ const { totalPrice } = inject('cart') as Cart
       imageUrl="/package-icon.png"
     />
 
-    <div v-else>
+    <div v-else class="drawer__container">
       <CartList />
       <DrawerFooter :totalPrice="totalPrice" />
     </div>
@@ -40,5 +40,12 @@ const { totalPrice } = inject('cart') as Cart
   background: white;
   z-index: 20;
   padding: 30px;
+
+  &__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 </style>
