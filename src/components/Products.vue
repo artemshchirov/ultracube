@@ -17,7 +17,7 @@ const emit = defineEmits(['onChangeSelect', 'onChangeSearchInput'])
 
       <div class="products__settings">
         <select @change="($event) => emit('onChangeSelect', $event)" class="products__sort">
-          <option value="name">Name</option>
+          <option value="title">Name</option>
           <option value="price">Price (Low to High)</option>
           <option value="-price">Price (High to Low)</option>
         </select>
