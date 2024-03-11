@@ -42,7 +42,7 @@ defineProps<Partial<Product>>()
   position: relative;
   padding: 32px;
   border: 1px solid var(--color-product-card-border);
-  border-radius: 16px;
+  border-radius: $border-radius-card;
   background: var(--color-product-card-background);
 
   &:hover {
@@ -63,18 +63,19 @@ defineProps<Partial<Product>>()
   }
 
   &__title {
-    margin-top: 8px;
+    margin-top: 14px;
   }
 
   &__footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
   &__price {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 
     &-label {
       color: var(--color-text-secondary);

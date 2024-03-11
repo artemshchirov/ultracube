@@ -2,6 +2,8 @@
 defineProps<{
   totalPrice: number
 }>()
+const LOGO_URL =
+  'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/logo/img_4462.800x800w_4BOkccY30.jpg'
 
 const emit = defineEmits(['openDrawer'])
 </script>
@@ -9,11 +11,7 @@ const emit = defineEmits(['openDrawer'])
 <template>
   <header class="header">
     <div class="header__logo">
-      <img
-        src="https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/logo/img_4462.800x800w_4BOkccY30.jpg"
-        alt="Logo"
-        class="logo"
-      />
+      <img :src="LOGO_URL" alt="Logo" class="logo" />
       <div class="header__branding">
         <h2 class="header__title">Ultracube</h2>
         <p class="header__tagline">Shop of the best cubes</p>
@@ -77,17 +75,17 @@ const emit = defineEmits(['openDrawer'])
   &__list {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     cursor: pointer;
 
     &-text {
-      color: var(--color-text-secondary);
+      color: var(--color-text-nav);
 
       &:hover {
         color: var(--color-text);

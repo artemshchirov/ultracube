@@ -1,16 +1,28 @@
 <script setup lang="ts">
+import { inject } from 'vue'
+
 import Overlay from '@/components/Overlay.vue'
 import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
 import CartList from '@/components/Cart/CartList.vue'
 import DrawerFooter from '@/components/Drawer/DrawerFooter.vue'
+import InfoBlock from '../InfoBlock.vue'
+import type { Cart } from '@/App.vue'
+
+const { totalPrice } = inject('cart') as Cart
 </script>
 
 <template>
   <Overlay />
   <div class="drawer">
     <DrawerHeader />
-    <CartList />
-    <DrawerFooter />
+    <InfoBlock
+      v-if="!totalPrice"
+      title="Cart is empty"
+      description="Add at least one cube to make an order"
+      imageUrl="/package-icon.png"
+    />
+    <CartList v-if="totalPrice" />
+    <DrawerFooter v-if="totalPrice" :totalPrice="totalPrice" />
   </div>
 </template>
 
@@ -23,6 +35,6 @@ import DrawerFooter from '@/components/Drawer/DrawerFooter.vue'
   width: 384px;
   background: white;
   z-index: 20;
-  padding: 40px;
+  padding: 30px;
 }
 </style>

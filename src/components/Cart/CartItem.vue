@@ -31,7 +31,7 @@ const emit = defineEmits(['onClickRemove'])
 <style lang="scss">
 .cart-item {
   padding: 16px;
-  border-radius: 12px;
+  border-radius: $border-radius-cart-item;
   border: 1px solid var(--color-product-card-border);
 
   &__card {

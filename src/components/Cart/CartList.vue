@@ -22,5 +22,6 @@ const { cart, removeFromCart } = inject('cart') as Cart
   display: flex;
   flex-direction: column;
   gap: 16px;
+  margin-top: 32px;
 }
 </style>

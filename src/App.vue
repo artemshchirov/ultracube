@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, provide, type Ref, computed, watch } from 'vue'
+import { ref, provide, type Ref, computed } from 'vue'
 
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
@@ -113,7 +113,7 @@ provide('API_URL', API_URL)
   width: 80%;
   margin: 56px auto;
   background: var(--color-page-background);
-  border-radius: 24px;
+  border-radius: $border-radius-page;
   box-shadow: $shadow-sm, $shadow-xl;
 }
 </style>

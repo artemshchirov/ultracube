@@ -28,7 +28,7 @@ body {
 .button {
   background-color: var(--color-primary);
   color: var(--color-text-light);
-  border-radius: $border-radius;
+  border-radius: $border-radius-button;
   padding: 10px 15px;
   border: none;
   cursor: pointer;

@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import type { Cart } from '@/App.vue'
+import { inject } from 'vue'
+
+const { closeDrawer } = inject('cart') as Cart
+</script>
+
 <template>
-  <div class="overlay" />
+  <div class="overlay" @click="closeDrawer" />
 </template>
 
 <style scoped lang="scss">

@@ -1,8 +1,11 @@
 $font-primary: 'Inter', Avenir, Helvetica;
 $font-secondary: Arial, sans-serif;
 
-$border-radius: 4px;
-$input-border-radius: 6px;
+$border-radius-page: 20px;
+$border-radius-cart-item: 20px;
+$border-radius-button: 18px;
+$border-radius-card: 40px;
+$border-radius-input: 6px;
 $transition-ease-in: 0.2s ease-in;
 $transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 $transition-duration: 150ms;
@@ -11,37 +14,39 @@ $shadow-sm: 0 8px 10px -6px rgb(0 0 0 / 0.1);
 $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 
 @mixin theme-light {
-  --color-primary: #5ece7b;
-  --color-primary-hover: #53b56c;
-  --color-primary-active: #53b56ce3;
+  --color-primary: #9dd458;
+  --color-primary-hover: #9cd458e0;
+  --color-primary-active: #9cd458c3;
   --color-secondary: #f1f1f1;
-  --color-background: #fef7e7;
-  --color-text: #333;
-  --color-text-secondary: #666;
-  --color-text-light: #ffffff;
+  --color-background: #e7f6ff;
+  --color-text: #2f2f2f;
+  --color-text-secondary: #bdbdbd;
+  --color-text-white: #ffffff;
+  --color-text-light: #cdcdcd;
   --color-disabled: #e1e1e1;
-  --color-separator: #ececec;
+  --color-separator: #eaeaea;
   --color-error: #ff0000;
   --color-success: #4bb543;
   --color-info: #17a2b8;
-  --color-product-card-border: #ededed;
-  --color-input-border: #ededed;
+  --color-product-card-border: #f3f3f3;
+  --color-input-border: #f3f3f3;
   --color-input-border-focus: #d2d1d1;
   --color-page-background: white;
   --color-product-card-background: #fff;
+  --color-text-nav: #5c5c5c;
 }
 
 @mixin theme-dark {
-  --color-primary: #52a67a;
-  --color-primary-hover: #49805e;
-  --color-primary-active: #49805ed9;
+  --color-primary: #9dd458;
+  --color-primary-hover: #9cd458e0;
+  --color-primary-active: #9cd458c3;
   --color-secondary: #242424;
   --color-background: #121212;
   --color-text: #e0e0e0;
-  --color-text-secondary: #e0e0e0db;
+  --color-text-secondary: #bdbdbd;
   --color-text-light: #ffffff;
   --color-disabled: #e1e1e1;
-  --color-separator: #e0e0e0;
+  --color-separator: #eaeaea;
   --color-error: #ff6868;
   --color-success: #76c893;
   --color-info: #5bc0de;
@@ -50,6 +55,7 @@ $shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
   --color-input-border-focus: #d2d1d1;
   --color-page-background: white;
   --color-product-card-background: #fff;
+  --color-text-nav: #5c5c5c;
 }
 
 @mixin transition-default {

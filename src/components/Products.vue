@@ -143,7 +143,7 @@ watch(filters, fetchProducts)
 
   &__sort {
     border: 1px solid var(--color-input-border);
-    border-radius: $input-border-radius;
+    border-radius: $border-radius-input;
     padding: 8px 12px;
     outline: none;
   }
@@ -161,7 +161,7 @@ watch(filters, fetchProducts)
 
     &-input {
       border: 1px solid var(--color-input-border);
-      border-radius: $input-border-radius;
+      border-radius: $border-radius-input;
       padding: 9px 16px 8px 44px;
       outline: none;
 

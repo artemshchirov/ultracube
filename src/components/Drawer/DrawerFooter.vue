@@ -2,9 +2,11 @@
 import type { Cart } from '@/App.vue'
 import { computed, inject } from 'vue'
 
-const { totalPrice, discountPrice, totalPriceAfterDiscount, isLoadingOrder } = inject(
-  'cart'
-) as Cart
+defineProps<{
+  totalPrice: number
+}>()
+
+const { discountPrice, totalPriceAfterDiscount, isLoadingOrder } = inject('cart') as Cart
 
 const { createOrder } = inject('cart') as Cart
 
@@ -68,10 +70,10 @@ const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoad
     @include transition-default;
     background: var(--color-primary);
     width: 100%;
-    border-radius: 12px;
+    border-radius: $border-radius-button;
     padding: 12px 0;
     border: none;
-    color: var(--color-text-light);
+    color: var(--color-text-white);
     cursor: pointer;
 
     &:hover {
