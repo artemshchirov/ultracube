@@ -2,6 +2,8 @@
 import type { Product } from '@/interfaces/product'
 
 defineProps<Partial<Product>>()
+
+const emit = defineEmits(['onClickRemove'])
 </script>
 
 <template>
@@ -14,7 +16,12 @@ defineProps<Partial<Product>>()
 
         <div class="cart-item__price">
           <b class="cart-item__price-value">{{ price }}₪</b>
-          <img src="/close.svg" alt="Plus" class="cart-item__price-close-icon" />
+          <img
+            @click="emit('onClickRemove')"
+            src="/close.svg"
+            alt="Plus"
+            class="cart-item__price-close-icon"
+          />
         </div>
       </div>
     </article>

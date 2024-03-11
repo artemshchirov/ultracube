@@ -8,7 +8,9 @@ import type { Product } from './interfaces/product'
 
 export interface CartActions {
   cart: Ref<Product[]>
+  onClickAddCard: (product: Product) => void
   addToCart: (product: Product) => void
+  removeFromCart: (product: Product) => void
   openDrawer: () => void
   closeDrawer: () => void
 }
@@ -16,13 +18,18 @@ export interface CartActions {
 const cart = ref<Product[]>([])
 
 const addToCart = (product: Product) => {
-  if (!product.isAdded) {
-    cart.value.push(product)
-    product.isAdded = true
-  } else {
-    cart.value.splice(cart.value.indexOf(product), 1)
-    product.isAdded = false
-  }
+  cart.value.push(product)
+  product.isAdded = true
+}
+
+const removeFromCart = (product: Product) => {
+  cart.value.splice(cart.value.indexOf(product), 1)
+  product.isAdded = false
+}
+
+const onClickAddCard = (product: Product) => {
+  if (!product.isAdded) addToCart(product)
+  else removeFromCart(product)
 }
 
 const isDrawerOpen = ref(false)
@@ -32,7 +39,9 @@ const closeDrawer = () => (isDrawerOpen.value = false)
 
 provide<CartActions>('cart', {
   cart,
+  onClickAddCard,
   addToCart,
+  removeFromCart,
   openDrawer,
   closeDrawer
 })

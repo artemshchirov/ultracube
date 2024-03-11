@@ -9,7 +9,7 @@ defineProps<{
 }>()
 
 const emit = defineEmits(['addToFavorite'])
-const { addToCart } = inject('cart') as CartActions
+const { onClickAddCard } = inject('cart') as CartActions
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const { addToCart } = inject('cart') as CartActions
         :title="product.title"
         :price="product.price"
         :on-click-favorite="() => emit('addToFavorite', product)"
-        :on-click-add="() => addToCart(product)"
+        :on-click-add="() => onClickAddCard(product)"
         :is-added="product.isAdded"
       />
     </li>

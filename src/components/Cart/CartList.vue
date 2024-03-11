@@ -3,12 +3,17 @@ import { inject } from 'vue'
 import CartItem from '@/components/Cart/CartItem.vue'
 import type { CartActions } from '@/App.vue'
 
-const { cart } = inject('cart') as CartActions
+const { cart, removeFromCart } = inject('cart') as CartActions
 </script>
 
 <template>
   <ul class="cart-list">
-    <CartItem v-for="item in cart" :key="item.id" v-bind="item" />
+    <CartItem
+      v-for="product in cart"
+      :key="product.id"
+      v-bind="product"
+      @on-click-remove="() => removeFromCart(product)"
+    />
   </ul>
 </template>
 
