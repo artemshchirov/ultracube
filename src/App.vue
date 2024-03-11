@@ -1,24 +1,29 @@
 <script setup lang="ts">
 import { ref, provide, computed, watch, onMounted, reactive } from 'vue'
-
+import axios from 'axios'
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import Products from '@/components/Products.vue'
 import type { Product } from './interfaces/product'
-import axios from 'axios'
 import type { AddToFavoriteFunction, Favorite } from './interfaces/favorite'
 import type { Cart } from './interfaces/cart'
 
 const API_URL = 'https://12055c66f459ccac.mokky.dev'
 
 const cart = ref<Product[]>([])
-
 const products = ref<Product[]>([])
+const isDrawerOpen = ref(false)
+const isLoadingOrder = ref(false)
 
 const filters = reactive({
   sortBy: 'title',
   searchQuery: ''
 })
+
+const totalPrice = computed(() => cart.value.reduce((acc, product) => acc + product.price, 0))
+const discount = 10
+const discountPrice = computed(() => Math.round((totalPrice.value * discount) / 100))
+const totalPriceAfterDiscount = computed(() => totalPrice.value - discountPrice.value)
 
 const onChangeSelect = (event: Event) => {
   const target = event.target as HTMLSelectElement
@@ -28,27 +33,6 @@ const onChangeSelect = (event: Event) => {
 const onChangeSearchInput = (event: Event) => {
   const target = event.target as HTMLInputElement
   filters.searchQuery = target.value
-}
-
-const fetchFavorites = async () => {
-  try {
-    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
-
-    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
-
-    products.value = products.value.map((product: Product) => {
-      const favorite = favoritesMap.get(product.id)
-
-      return {
-        ...product,
-        isFavorite: favorite !== undefined,
-        favoriteId: favorite ? favorite.id : null,
-        isAdded: false
-      }
-    })
-  } catch (err) {
-    console.error(err)
-  }
 }
 
 const fetchProducts = async () => {
@@ -73,6 +57,26 @@ const fetchProducts = async () => {
   }
 }
 
+const fetchFavorites = async () => {
+  try {
+    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
+    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
+
+    products.value = products.value.map((product: Product) => {
+      const favorite = favoritesMap.get(product.id)
+
+      return {
+        ...product,
+        isFavorite: favorite !== undefined,
+        favoriteId: favorite ? favorite.id : null,
+        isAdded: false
+      }
+    })
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
   try {
     if (!product.isFavorite) {
@@ -89,21 +93,6 @@ const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
     console.error(err)
   }
 }
-
-watch(filters, fetchProducts)
-
-const isLoadingOrder = ref(false)
-
-const totalPrice = computed(() => cart.value.reduce((acc, product) => acc + product.price, 0))
-
-const discount = 10
-const discountPrice = computed(() => Math.round((totalPrice.value * discount) / 100))
-const totalPriceAfterDiscount = computed(() => totalPrice.value - discountPrice.value)
-
-const isDrawerOpen = ref(false)
-
-const openDrawer = () => (isDrawerOpen.value = true)
-const closeDrawer = () => (isDrawerOpen.value = false)
 
 const addToCart = (product: Product) => {
   cart.value.push(product)
@@ -141,14 +130,31 @@ const createOrder = async () => {
   }
 }
 
+const openDrawer = () => (isDrawerOpen.value = true)
+const closeDrawer = () => (isDrawerOpen.value = false)
+
+onMounted(async () => {
+  const localCart = localStorage.getItem('cart')
+  cart.value = localCart ? JSON.parse(localCart) : []
+  console.log('cart', cart.value)
+
+  await fetchProducts()
+  await fetchFavorites()
+
+  products.value = products.value.map((product) => ({
+    ...product,
+    isAdded: cart.value.some((cartItem) => cartItem.id === product.id)
+  }))
+})
+
+watch(filters, fetchProducts)
+
 watch(
   cart,
   () => {
     localStorage.setItem('cart', JSON.stringify(cart.value))
   },
-  {
-    deep: true
-  }
+  { deep: true }
 )
 
 watch(
@@ -176,20 +182,6 @@ provide<Cart>('cart', {
   createOrder,
   openDrawer,
   closeDrawer
-})
-
-onMounted(async () => {
-  const localCart = localStorage.getItem('cart')
-  cart.value = localCart ? JSON.parse(localCart) : []
-  console.log('cart', cart.value)
-
-  await fetchProducts()
-  await fetchFavorites()
-
-  products.value = products.value.map((product) => ({
-    ...product,
-    isAdded: cart.value.some((cartItem) => cartItem.id === product.id)
-  }))
 })
 </script>
 
