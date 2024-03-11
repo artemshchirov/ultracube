@@ -9,7 +9,11 @@ const emit = defineEmits(['openDrawer'])
 <template>
   <header class="header">
     <div class="header__logo">
-      <img src="/logo.png" alt="Logo" class="logo" />
+      <img
+        src="https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/logo/img_4462.800x800w_4BOkccY30.jpg"
+        alt="Logo"
+        class="logo"
+      />
       <div class="header__branding">
         <h2 class="header__title">Ultracube</h2>
         <p class="header__tagline">Shop of the best cubes</p>
