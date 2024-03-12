@@ -1,7 +1,9 @@
 <script setup lang="ts">
-defineProps<{
+interface Props {
   totalPrice: number
-}>()
+}
+
+defineProps<Readonly<Props>>()
 const LOGO_URL =
   'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/logo/img_4462.800x800w_4BOkccY30.jpg'
 
@@ -10,13 +12,15 @@ const emit = defineEmits(['openDrawer'])
 
 <template>
   <header class="header">
-    <div class="header__logo">
-      <img :src="LOGO_URL" alt="Logo" class="logo" />
-      <div class="header__branding">
-        <h2 class="header__title">Ultracube</h2>
-        <p class="header__tagline">Shop of the best cubes</p>
+    <router-link to="/" class="link">
+      <div class="header__logo">
+        <img :src="LOGO_URL" alt="Logo" class="logo" />
+        <div class="header__branding">
+          <h2 class="header__title">Ultracube</h2>
+          <p class="header__tagline">Shop of the best cubes</p>
+        </div>
       </div>
-    </div>
+    </router-link>
 
     <nav class="nav">
       <ul class="nav__list">
@@ -24,11 +28,13 @@ const emit = defineEmits(['openDrawer'])
           <img src="/cart.svg" alt="Cart" class="nav__icon" />
           <b class="nav__item-text">{{ totalPrice }}₪</b>
         </li>
-        <li class="nav__item">
-          <img src="/heart.svg" alt="Wishlist" class="nav__icon" /><span class="nav__item-text"
-            >Wishlist</span
-          >
-        </li>
+        <router-link to="/favorites" class="link">
+          <li class="nav__item">
+            <img src="/heart.svg" alt="Favorites" class="nav__icon" /><span class="nav__item-text"
+              >Favorites</span
+            >
+          </li>
+        </router-link>
         <li class="nav__item">
           <img src="/profile.svg" alt="Profile" class="nav__icon" /><span class="nav__item-text"
             >Profile</span

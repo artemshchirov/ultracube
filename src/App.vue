@@ -3,11 +3,9 @@ import { ref, provide, computed, watch } from 'vue'
 import axios from 'axios'
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
-import Home from '@/pages/Home.vue'
-import type { Product } from './interfaces/product'
-import type { Cart } from './interfaces/cart'
-
-const API_URL = 'https://12055c66f459ccac.mokky.dev'
+import type { Product } from '@/interfaces/product'
+import type { Cart } from '@/interfaces/cart'
+import { API_URL } from '@/constants'
 
 /* Start of Cart */
 const cart = ref<Product[]>([])
@@ -26,7 +24,7 @@ const totalPriceAfterDiscount = computed(() => totalPrice.value - discountPrice.
 const createOrder = async () => {
   try {
     isLoadingOrder.value = true
-    const { data } = await axios.post(`${API_URL}/orders`, {
+    const { data: cartData } = await axios.post(`${API_URL}/orders`, {
       products: cart.value,
       totalPrice: totalPrice.value,
       discount: discount,
@@ -36,7 +34,7 @@ const createOrder = async () => {
 
     cart.value = []
 
-    return data
+    return cartData
   } catch (error) {
     console.error('Error creating order:', error)
   } finally {
@@ -83,7 +81,9 @@ provide<Partial<Cart>>('cart', {
   <div class="page">
     <AppHeader @open-drawer="openDrawer" :total-price="totalPrice" />
 
-    <Home :api-url="API_URL" />
+    <div class="page__container">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -94,5 +94,39 @@ provide<Partial<Cart>>('cart', {
   background: var(--color-page-background);
   border-radius: $border-radius-page;
   box-shadow: $shadow-sm, $shadow-xl;
+
+  &__container {
+    padding: 40px;
+  }
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  @include transition-default;
+  background: var(--color-primary);
+  width: 100%;
+  border-radius: $border-radius-button;
+  padding: 12px 0;
+  border: none;
+  color: var(--color-text-white);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-primary-hover);
+  }
+
+  &:active {
+    background: var(--color-primary-active);
+  }
+
+  &:disabled {
+    background: var(--color-disabled);
+    cursor: not-allowed;
+  }
 }
 </style>

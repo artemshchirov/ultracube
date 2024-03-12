@@ -1,22 +1,23 @@
 <script setup lang="ts">
 import CardList from '@/components/Card/CardList.vue'
+import { API_URL } from '@/constants'
 import type { Cart } from '@/interfaces/cart'
 import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
 import axios from 'axios'
 import { inject, onMounted, reactive, ref, watch } from 'vue'
 
-const { apiUrl } = defineProps<{
-  apiUrl: string
-}>()
-
 const products = ref<Product[]>([])
 
 const { cart, addToCart, removeFromCart } = inject('cart') as Cart
-const filters = reactive({
-  sortBy: 'title',
-  searchQuery: ''
-})
+
+const restoreFilters = () => {
+  const defaultFilters = { sortBy: 'title', searchQuery: '' }
+  const savedFilters = localStorage.getItem('filters')
+  return savedFilters ? JSON.parse(savedFilters) : defaultFilters
+}
+
+const filters = reactive(restoreFilters())
 
 const onClickAddCard = (product: Product) => {
   if (!product.isAdded) addToCart(product)
@@ -26,11 +27,13 @@ const onClickAddCard = (product: Product) => {
 const onChangeSelect = (event: Event) => {
   const target = event.target as HTMLSelectElement
   filters.sortBy = target.value
+  localStorage.setItem('filters', JSON.stringify(filters))
 }
 
 const onChangeSearchInput = (event: Event) => {
   const target = event.target as HTMLInputElement
   filters.searchQuery = target.value
+  localStorage.setItem('filters', JSON.stringify(filters))
 }
 
 const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
@@ -38,11 +41,14 @@ const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
     if (!product.isFavorite) {
       const newFavoriteProductData = { parentId: product.id }
       product.isFavorite = true
-      const { data } = await axios.post(`${apiUrl}/favorites`, newFavoriteProductData)
-      product.favoriteId = data.id
+      const { data: favoriteData } = await axios.post(
+        `${API_URL}/favorites`,
+        newFavoriteProductData
+      )
+      product.favoriteId = favoriteData.id
     } else {
       product.isFavorite = false
-      await axios.delete(`${apiUrl}/favorites/${product.favoriteId}`)
+      await axios.delete(`${API_URL}/favorites/${product.favoriteId}`)
       product.favoriteId = null
     }
   } catch (err) {
@@ -60,8 +66,9 @@ const fetchProducts = async () => {
       params.title = `*${filters.searchQuery}*`
     }
 
-    const { data } = await axios.get(`${apiUrl}/products`, { params })
-    products.value = data.map((product: Product) => ({
+    const { data: productsData } = await axios.get(`${API_URL}/products`, { params })
+
+    products.value = productsData.map((product: Product) => ({
       ...product,
       isFavorite: false,
       favoriteId: null,
@@ -74,7 +81,7 @@ const fetchProducts = async () => {
 
 const fetchFavorites = async () => {
   try {
-    const { data: favoritesData } = await axios.get<Favorite[]>(`${apiUrl}/favorites`)
+    const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
     const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
 
     products.value = products.value.map((product: Product) => {
@@ -87,16 +94,12 @@ const fetchFavorites = async () => {
         isAdded: false
       }
     })
-    console.log(products.value)
   } catch (err) {
     console.error(err)
   }
 }
 
-onMounted(async () => {
-  const localCart = localStorage.getItem('cart')
-  cart.value = localCart ? JSON.parse(localCart) : []
-
+const updateProductStates = async () => {
   await fetchProducts()
   await fetchFavorites()
 
@@ -104,9 +107,17 @@ onMounted(async () => {
     ...product,
     isAdded: cart.value.some((cartItem) => cartItem.id === product.id)
   }))
+}
+
+onMounted(async () => {
+  const localCart = localStorage.getItem('cart')
+  cart.value = localCart ? JSON.parse(localCart) : []
+
+  restoreFilters()
+  await updateProductStates()
 })
 
-watch(filters, fetchProducts)
+watch(filters, updateProductStates)
 
 watch(
   cart,
@@ -126,7 +137,7 @@ watch(
       <h2 class="home__title">All cubes</h2>
 
       <div class="home__settings">
-        <select @change="onChangeSelect" class="home__sort">
+        <select v-model="filters.sortBy" @change="onChangeSelect" class="home__sort">
           <option value="title">Name</option>
           <option value="price">Price (Low to High)</option>
           <option value="-price">Price (High to Low)</option>
@@ -134,7 +145,12 @@ watch(
 
         <div class="home__search">
           <img class="home__search-icon" src="/search.svg" alt="Search" />
-          <input @input="onChangeSearchInput" class="home__search-input" placeholder="Search..." />
+          <input
+            v-model="filters.searchQuery"
+            @input="onChangeSearchInput"
+            class="home__search-input"
+            placeholder="Search..."
+          />
         </div>
       </div>
     </div>

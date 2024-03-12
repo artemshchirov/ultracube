@@ -2,11 +2,13 @@
 import type { Cart } from '@/interfaces/cart'
 import { inject } from 'vue'
 
-defineProps<{
+interface Props {
   title: string
   description: string
   imageUrl: string
-}>()
+}
+
+defineProps<Readonly<Props>>()
 
 const { closeDrawer } = inject('cart') as Cart
 </script>
@@ -20,7 +22,7 @@ const { closeDrawer } = inject('cart') as Cart
         <p class="info__description">{{ description }}</p>
       </div>
     </div>
-    <button @click="closeDrawer" class="back-btn">Cancel</button>
+    <button @click="closeDrawer" class="button info__back-btn">Cancel</button>
   </div>
 </template>
 
@@ -63,30 +65,9 @@ const { closeDrawer } = inject('cart') as Cart
     color: var(--color-text-secondary);
   }
 
-  .back-btn {
-    @include transition-default;
-    background: var(--color-primary);
-    width: 100%;
-    border-radius: $border-radius-button;
-    padding: 12px 0;
-    border: none;
-    color: var(--color-text-white);
-    cursor: pointer;
+  &__back-btn {
     margin-top: 40px;
     max-width: 245px;
-
-    &:hover {
-      background: var(--color-primary-hover);
-    }
-
-    &:active {
-      background: var(--color-primary-active);
-    }
-
-    &:disabled {
-      background: var(--color-disabled);
-      cursor: not-allowed;
-    }
   }
 }
 </style>

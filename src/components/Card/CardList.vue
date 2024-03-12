@@ -2,9 +2,11 @@
 import CardItem from '@/components/Card/CardItem.vue'
 import type { Product } from '@/interfaces/product'
 
-defineProps<{
+interface Props {
   products: Product[]
-}>()
+}
+
+defineProps<Readonly<Props>>()
 
 const emit = defineEmits(['addToFavorite', 'onClickAddCard'])
 </script>

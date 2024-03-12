@@ -2,9 +2,11 @@
 import type { Cart } from '@/interfaces/cart'
 import { computed, inject } from 'vue'
 
-defineProps<{
+interface Props {
   totalPrice: number
-}>()
+}
+
+defineProps<Readonly<Props>>()
 
 const { discountPrice, totalPriceAfterDiscount, isLoadingOrder } = inject('cart') as Cart
 
@@ -33,7 +35,7 @@ const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoad
       </div>
     </div>
 
-    <button @click="createOrder" :disabled="isButtonDisabled" class="drawer-footer__checkout-btn">
+    <button @click="createOrder" :disabled="isButtonDisabled" class="button">
       Checkout {{ totalPriceAfterDiscount ? `(${totalPriceAfterDiscount}₪)` : '' }}
     </button>
   </footer>
@@ -64,30 +66,6 @@ const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoad
   &__separator {
     flex: 1 1 0%;
     border-bottom: 1px dashed var(--color-separator);
-  }
-
-  &__checkout-btn {
-    @include transition-default;
-    background: var(--color-primary);
-    width: 100%;
-    border-radius: $border-radius-button;
-    padding: 12px 0;
-    border: none;
-    color: var(--color-text-white);
-    cursor: pointer;
-
-    &:hover {
-      background: var(--color-primary-hover);
-    }
-
-    &:active {
-      background: var(--color-primary-active);
-    }
-
-    &:disabled {
-      background: var(--color-disabled);
-      cursor: not-allowed;
-    }
   }
 }
 </style>
