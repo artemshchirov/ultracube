@@ -5,6 +5,4 @@ export interface Favorite {
   parentId: number
 }
 
-export interface AddToFavoriteFunction {
-  (obj: Product): void
-}
+export type AddToFavoriteFunction = (product: Product) => Promise<void>
