@@ -165,8 +165,6 @@ watch(
 
 <style scoped lang="scss">
 .home {
-  padding: 40px;
-
   &__header {
     display: flex;
     justify-content: space-between;
