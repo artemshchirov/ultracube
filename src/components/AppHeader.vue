@@ -1,26 +1,18 @@
 <script setup lang="ts">
+import Logo from '@/components/Logo.vue'
+
 interface Props {
   totalPrice: number
 }
 
 defineProps<Readonly<Props>>()
-const LOGO_URL =
-  'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/logo/img_4462.800x800w_4BOkccY30.jpg'
 
 const emit = defineEmits(['openDrawer'])
 </script>
 
 <template>
   <header class="header">
-    <router-link to="/" class="link">
-      <div class="header__logo">
-        <img :src="LOGO_URL" alt="Logo" class="logo" />
-        <div class="header__branding">
-          <h2 class="header__title">Ultracube</h2>
-          <p class="header__tagline">Shop of the best cubes</p>
-        </div>
-      </div>
-    </router-link>
+    <Logo />
 
     <nav class="nav">
       <ul class="nav__list">
@@ -51,28 +43,6 @@ const emit = defineEmits(['openDrawer'])
   justify-content: space-between;
   border-bottom: 1px solid var(--color-separator);
   padding: 32px 40px;
-
-  &__logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  &__title {
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.75rem; /* 28px */
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-
-  &__tagline {
-    color: var(--color-text-secondary);
-  }
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
 }
 
 .nav {
