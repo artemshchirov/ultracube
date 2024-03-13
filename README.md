@@ -1,6 +1,6 @@
 # Ultracube | Rubik's Cube Shop
 
-Welcome to `ultracube`, a fully functional online store built with Vue 3, showcasing the best practices in developing e-commerce platforms. This project leverages the latest web technologies to provide a seamless shopping experience, from browsing products to checking out.
+Welcome to `ultracube`, a functional online store built with Vue 3, showcasing the best practices in developing e-commerce platforms. This project leverages the latest web technologies to provide a seamless shopping experience, from browsing products to checking out.
 
 ## 🚀 Features
 
@@ -24,7 +24,7 @@ Welcome to `ultracube`, a fully functional online store built with Vue 3, showca
 - ESLint
 - Prettier
 
-## TODO
+## ✔️ TODO
 
 - [x] Debounce search
 - [ ] Profile page
@@ -49,6 +49,10 @@ npm run dev
 ```
 
 Navigate to `http://localhost:5173` to view the application
+
+## 👨‍💻 Author
+
+[Artem Shchirov](https://github.com/artemshchirov) - Full Stack Developer
 
 ## 🛠️ Contribution
 

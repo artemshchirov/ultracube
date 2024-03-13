@@ -53,9 +53,33 @@ provide<Partial<Cart>>('cart', {
       <router-view />
     </div>
   </div>
+  <div class="about">
+    <a class="link about__author" href="https://artemshchirov.github.io/portfolio" target="_blank">
+      Developed with 💻 and ❤️ by <span class="about__author-name">Ɐrtem</span>
+    </a>
+    <a class="link about__source" href="https://github.com/artemshchirov/ultracube" target="_blank"
+      >Explore on GitHub</a
+    >
+  </div>
 </template>
 
 <style lang="scss">
+.about {
+  max-width: max-content;
+  margin: 0 auto 40px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &__author,
+  &__source {
+    @include link-style;
+  }
+}
+
 .page {
   width: 80%;
   margin: 56px auto;
@@ -69,7 +93,6 @@ provide<Partial<Cart>>('cart', {
 }
 
 .link {
-  color: var(--color-text);
   text-decoration: none;
   cursor: pointer;
 }

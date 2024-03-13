@@ -5,4 +5,9 @@ export interface Favorite {
   product_id: number
 }
 
+export interface FavoriteResponse {
+  id: number
+  product: Product
+}
+
 export type AddToFavoriteFunction = (product: Product) => Promise<void>

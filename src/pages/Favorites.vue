@@ -1,15 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { API_URL } from '@/constants'
 import CardList from '@/components/Card/CardList.vue'
+import type { FavoriteResponse } from '@/interfaces/favorite'
 
 const favorites = ref([])
 
 onMounted(async () => {
   try {
     const { data: favoritesData } = await axios.get(`${API_URL}/favorites?_relations=products`)
-    favorites.value = favoritesData.flatMap((favorite) => favorite.product)
+    favorites.value = favoritesData.flatMap((favorite: FavoriteResponse) => favorite.product)
   } catch (error) {
     console.error(error)
   }
