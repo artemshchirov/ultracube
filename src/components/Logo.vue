@@ -16,7 +16,7 @@ import { LOGO_URL } from '@/constants'
 
 <style scoped lang="scss">
 .link {
-  color: inherit;
+  color: var(--color-text);
 }
 
 .logo {
