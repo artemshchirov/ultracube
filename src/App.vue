@@ -1,46 +1,19 @@
 <script setup lang="ts">
 import { ref, provide, computed, watch } from 'vue'
-import axios from 'axios'
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
 import type { Product } from '@/interfaces/product'
 import type { Cart } from '@/interfaces/cart'
-import { API_URL } from '@/constants'
 
 /* Start of Cart */
 const cart = ref<Product[]>([])
 
 const isDrawerOpen = ref(false)
-const isLoadingOrder = ref(false)
 
 const openDrawer = () => (isDrawerOpen.value = true)
 const closeDrawer = () => (isDrawerOpen.value = false)
 
 const totalPrice = computed(() => cart.value.reduce((acc, product) => acc + product.price, 0))
-const discount = 10
-const discountPrice = computed(() => Math.round((totalPrice.value * discount) / 100))
-const totalPriceAfterDiscount = computed(() => totalPrice.value - discountPrice.value)
-
-const createOrder = async () => {
-  try {
-    isLoadingOrder.value = true
-    const { data: cartData } = await axios.post(`${API_URL}/orders`, {
-      products: cart.value,
-      totalPrice: totalPrice.value,
-      discount: discount,
-      discountPrice: discountPrice.value,
-      totalPriceAfterDiscount: totalPriceAfterDiscount.value
-    })
-
-    cart.value = []
-
-    return cartData
-  } catch (error) {
-    console.error('Error creating order:', error)
-  } finally {
-    isLoadingOrder.value = false
-  }
-}
 
 const addToCart = (product: Product) => {
   cart.value.push(product)
@@ -51,7 +24,6 @@ const removeFromCart = (product: Product) => {
   cart.value.splice(cart.value.indexOf(product), 1)
   product.isAdded = false
 }
-
 /* End of Cart */
 
 watch(
@@ -65,12 +37,8 @@ watch(
 provide<Partial<Cart>>('cart', {
   cart,
   totalPrice,
-  discountPrice,
-  totalPriceAfterDiscount,
-  isLoadingOrder,
   addToCart,
   removeFromCart,
-  createOrder,
   openDrawer,
   closeDrawer
 })

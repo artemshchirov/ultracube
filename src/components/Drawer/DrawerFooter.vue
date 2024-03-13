@@ -1,16 +1,43 @@
 <script setup lang="ts">
+import { API_URL, DISCOUNT_PERCENTAGE } from '@/constants'
 import type { Cart } from '@/interfaces/cart'
-import { computed, inject } from 'vue'
+import axios from 'axios'
+import { computed, inject, ref } from 'vue'
 
 interface Props {
   totalPrice: number
 }
+const { totalPrice } = defineProps<Readonly<Props>>()
+const emit = defineEmits(['update:orderId'])
 
-defineProps<Readonly<Props>>()
+const { cart } = inject('cart') as Cart
+const isLoadingOrder = ref(false)
 
-const { discountPrice, totalPriceAfterDiscount, isLoadingOrder } = inject('cart') as Cart
+const discountPrice = computed(() => Math.round((totalPrice * DISCOUNT_PERCENTAGE) / 100))
+const totalPriceAfterDiscount = computed(() => totalPrice - discountPrice.value)
 
-const { createOrder } = inject('cart') as Cart
+const createOrder = async () => {
+  try {
+    isLoadingOrder.value = true
+    const { data: cartData } = await axios.post(`${API_URL}/orders`, {
+      products: cart.value,
+      totalPrice: totalPrice,
+      discount: DISCOUNT_PERCENTAGE,
+      discountPrice: discountPrice.value,
+      totalPriceAfterDiscount: totalPriceAfterDiscount.value
+    })
+
+    cart.value = []
+
+    emit('update:orderId', cartData.id)
+
+    return cartData
+  } catch (error) {
+    console.error('Error creating order:', error)
+  } finally {
+    isLoadingOrder.value = false
+  }
+}
 
 const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoadingOrder.value)
 </script>

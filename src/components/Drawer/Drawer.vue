@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+import { inject, ref } from 'vue'
 
 import Overlay from '@/components/Overlay.vue'
 import DrawerHeader from '@/components/Drawer/DrawerHeader.vue'
@@ -9,6 +9,7 @@ import InfoBlock from '../InfoBlock.vue'
 import type { Cart } from '@/interfaces/cart'
 
 const { totalPrice } = inject('cart') as Cart
+const orderId = ref(null)
 </script>
 
 <template>
@@ -17,15 +18,22 @@ const { totalPrice } = inject('cart') as Cart
     <DrawerHeader />
 
     <InfoBlock
-      v-if="!totalPrice"
+      v-if="!totalPrice && !orderId"
       title="Cart is empty"
       description="Add at least one cube to make an order"
       imageUrl="/package-icon.png"
     />
 
+    <InfoBlock
+      v-if="orderId"
+      title="Order placed"
+      :description="`Your order #${orderId} will soon be handed over to the courier delivery`"
+      imageUrl="/order-success-icon.png"
+    />
+
     <div v-else class="drawer__container">
       <CartList />
-      <DrawerFooter :totalPrice="totalPrice" />
+      <DrawerFooter :total-price="totalPrice" @update:orderId="orderId = $event" />
     </div>
   </div>
 </template>

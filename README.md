@@ -24,6 +24,14 @@ Welcome to `ultracube`, a fully functional online store built with Vue 3, showca
 - ESLint
 - Prettier
 
+## TODO
+
+- [x] Debounce search
+- [ ] Profile page
+- [ ] Show orders in profile
+- [ ] Authentication
+- [ ] Navigation menu
+
 ## 📘 Getting Started
 
 To get started with this project, clone the repository and install the dependencies:

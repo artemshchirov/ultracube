@@ -42,8 +42,7 @@ const { closeDrawer } = inject('cart') as Cart
   }
 
   &__image {
-    width: 80px;
-    height: 80px;
+    width: 100px;
   }
 
   &__text {
