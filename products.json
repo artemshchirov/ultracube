@@ -1,0 +1,218 @@
+[
+  {
+    "id": 1,
+    "title": "Megaminx Magnetic",
+    "price": 70,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Megaminx%20Magnetic/img_5514.800x800w_pTx1A0e5B.jpg?updatedAt=1709890714064"
+  },
+  {
+    "id": 2,
+    "title": "Floppy Spinner 1x3x3",
+    "price": 30,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Floppy%20Spinner%201x3x3/floppi-spinner-1.800x800w__Fzn1lbfNV.jpg?updatedAt=1709890711535"
+  },
+  {
+    "id": 3,
+    "title": "Rubik's Cube 3x3",
+    "price": 20,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Rubik's%20Cube%203x3/img_8480.800x800w_7pwFyKgj5.jpg?updatedAt=1709890726659"
+  },
+  {
+    "id": 4,
+    "title": "Mirror Cube Silver 3x3",
+    "price": 35,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Cube%20Silver%203x3/img_9076.800x800w_BeNiX4zT7.jpg?updatedAt=1709890719714"
+  },
+  {
+    "id": 5,
+    "title": "Mirror Cube Gold 3x3",
+    "price": 40,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Cube%20Gold%203x3/img_9069.800x800w_5HfJNRZJ5.jpg?updatedAt=1709890716932"
+  },
+  {
+    "id": 6,
+    "title": "Oil",
+    "price": 15,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Oil/2016-07-26-23-15-09--kopiya.800x800w_znxp7Xfuk.jpg?updatedAt=1709890722214"
+  },
+  {
+    "id": 7,
+    "title": "Snake Rainbow",
+    "price": 25,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Snake%20Rainbow/img_0242.800x800w_-eebWTIMzb.jpg?updatedAt=1709890708533"
+  },
+  {
+    "id": 8,
+    "title": "Rubik's Cube Magnet 3x3",
+    "price": 50,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Rubik's%20Cube%203x3%20Magnet/chifa-k-1.800x800w_CCfoyiHMb.jpg?updatedAt=1709890726990"
+  },
+  {
+    "id": 9,
+    "title": "Mirror Cube Earth 3x3",
+    "price": 45,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Cube%20Earth%203x3/img_4699-kopiya.800x800w_8PEwZBNcV.jpg?updatedAt=1709890714217"
+  },
+  {
+    "id": 10,
+    "title": "Rubik's Cube 2x2",
+    "price": 15,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Rubik's%20Cube%202x2/chidi-2.800x800w_FISeprTsZ.jpg?updatedAt=1709890724397"
+  },
+  {
+    "id": 11,
+    "title": "Rubik's Cube 5x5",
+    "price": 60,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Rubik's%20Cube%205x5/img_1471.800x800w_UIMo5WGkF.jpg?updatedAt=1709890728659"
+  },
+  {
+    "id": 12,
+    "title": "Rubik's Cube 13x13",
+    "price": 300,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Rubik's%20Cube%2013x13/img_8004.800x800w_rAvxXK6Df.jpg?updatedAt=1709890729035"
+  },
+  {
+    "id": 13,
+    "title": "Tetris Cube Blocks Magnetic",
+    "price": 90,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Tetris%20Cube%20Blocks%20Magnetic/img_4462.800x800w_Q8dOMx-1b.jpg?updatedAt=1709890708418"
+  },
+  {
+    "id": 14,
+    "title": "Tetris Cube Blocks Magnetic Transparent",
+    "price": 70,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Tetris%20Cube%20Blocks%20Magnetic%20Transparent/img_4466.800x800w_M9Amohj9L.jpg?updatedAt=1709890708531"
+  },
+  {
+    "id": 15,
+    "title": "Timer",
+    "price": 80,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Timer/tajmer-moyu-3.800x800w_dFfhmdH6r.jpg?updatedAt=1709890711569"
+  },
+  {
+    "id": 16,
+    "title": "Pyraminx Magnetic",
+    "price": 45,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Pyraminx%20Magnetic/img_0176-kopiya.800x800w_Z06Nwou_t.png?updatedAt=1709890722385"
+  },
+  {
+    "id": 17,
+    "title": "Pyraminx Magnetic Carbon",
+    "price": 50,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Pyraminx%20Magnetic%20Carbon/img_7329-kopiya.800x800w_EqP_xNwxK.jpg?updatedAt=1709890725031"
+  },
+  {
+    "id": 18,
+    "title": "Mirror Cube Gold 2x2",
+    "price": 30,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Cube%20Gold%202X2/img_4520.800x800w_G7LlFJtoH.jpg?updatedAt=1709890716506"
+  },
+  {
+    "id": 19,
+    "title": "Mirror Cube Silver 2x2",
+    "price": 30,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Cube%20Silver%202X2/img_4546_4548.800x800w_hs0XAIf5L.jpg?updatedAt=1709890719139"
+  },
+  {
+    "id": 20,
+    "title": "Mirror Floppy Ghost Cube",
+    "price": 35,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Mirror%20Floppy%20Ghost%20Cube/gost-floppi-z-1.800x800w_B3A-KfzI0.jpg?updatedAt=1709890721800"
+  },
+  {
+    "id": 21,
+    "title": "Sudoku Cube",
+    "price": 40,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Sudoku%20Cube/img_4825-kopiya.800x800w_b0mpyB0-d.jpg?updatedAt=1710180412693"
+  },
+  {
+    "id": 22,
+    "title": "Rubik's Cube For Pictures",
+    "price": 20,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%20For%20Pictures/img_6163.800x800w_3kG4nRs3X.jpg?updatedAt=1710180412135"
+  },
+  {
+    "id": 23,
+    "title": "Rubik's Cube 9x9 Magnetic",
+    "price": 300,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%209x9%20Magnetic/img_3256_3257.800x800w_ON4sJWClZ.jpg?updatedAt=1710180411445"
+  },
+  {
+    "id": 24,
+    "title": "Rubik's Cube 9x9",
+    "price": 250,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%209x9/img_0403.800x800w_x0NYfr7UA.jpg?updatedAt=1710180410076"
+  },
+  {
+    "id": 25,
+    "title": "Rubik's Cube 8x8 Magnetic",
+    "price": 250,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%208x8%20Magnetic/img_1040-kopiya.800x800w_r7Ot6CvvW.jpg?updatedAt=1710180409891"
+  },
+  {
+    "id": 26,
+    "title": "Rubik's Cube 6x6",
+    "price": 70,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%206x6/img_9884-kopiya.800x800w_JVByYxfX7u.jpg?updatedAt=1710180408642"
+  },
+  {
+    "id": 27,
+    "title": "Rubik's Cube 3x3 Carbon",
+    "price": 50,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Rubik's%20Cube%203x3%20Carbon/img_8806-kopiya.800x800w_5F4YCMROo_.jpg?updatedAt=1710180407524"
+  },
+  {
+    "id": 28,
+    "title": "Mirror Cube Magenta",
+    "price": 35,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Mirror%20Cube%20Magenta/img_0269-kopiya.800x800w_ahsYzO8J3.jpg?updatedAt=1710180405613"
+  },
+  {
+    "id": 29,
+    "title": "Infinity Cube Ocean",
+    "price": 40,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Infinity%20Cube%20Ocean/img_4617-kopiya.800x800w_alI0Z2Mxp3.jpg?updatedAt=1710180404588"
+  },
+  {
+    "id": 30,
+    "title": "Infinity Cube Galaxy",
+    "price": 40,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Infinity%20Cube%20Galaxy/3k6a4267-kopiya.800x800w_XmVdr3bwY.jpg?updatedAt=1710180404088"
+  },
+  {
+    "id": 31,
+    "title": "Geek Cube",
+    "price": 120,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Geek%20Cube/img_2043.800x800w_ZzNOdExjC.png?updatedAt=1710180404123"
+  },
+  {
+    "id": 32,
+    "title": "Cuboid Magenta",
+    "price": 90,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Cuboid%20Magenta/img_6754_6755.800x800w_GbW6RY8Wh.jpg?updatedAt=1710180402654"
+  },
+  {
+    "id": 33,
+    "title": "Cuboid",
+    "price": 85,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Cuboid/img_6741.800x800w_fNynsAu4q.jpg?updatedAt=1710180401701"
+  },
+  {
+    "id": 34,
+    "title": "Circle Cube",
+    "price": 65,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Circle%20Cube/img_5434-kopiya.800x800w_MkxZiMiwB.jpg?updatedAt=1710180400046"
+  },
+  {
+    "id": 35,
+    "title": "Axis Cube",
+    "price": 55,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Axis%20Cube/img_7025.800x800w_01bRj4b9gh.jpg?updatedAt=1710180398363"
+  },
+  {
+    "id": 36,
+    "title": "Axis Cube Borderless",
+    "price": 60,
+    "imageUrl": "https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/new-products/Axis%20Cube%20Borderless/img_1455_1456.800x800w_YOS-BtCI76.jpg?updatedAt=1710180398368"
+  }
+]

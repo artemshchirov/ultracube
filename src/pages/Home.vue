@@ -12,13 +12,7 @@ const products = ref<Product[]>([])
 
 const { cart, addToCart, removeFromCart } = inject('cart') as Cart
 
-const restoreFilters = () => {
-  const defaultFilters = { sortBy: 'title', searchQuery: '' }
-  const savedFilters = localStorage.getItem('filters')
-  return savedFilters ? JSON.parse(savedFilters) : defaultFilters
-}
-
-const filters = reactive(restoreFilters())
+const filters = reactive({ sortBy: 'title', searchQuery: '' })
 
 const onClickAddCard = (product: Product) => {
   if (!product.isAdded) addToCart(product)
@@ -116,7 +110,6 @@ onMounted(async () => {
   const localCart = localStorage.getItem('cart')
   cart.value = localCart ? JSON.parse(localCart) : []
 
-  restoreFilters()
   await updateProductStates()
 })
 
