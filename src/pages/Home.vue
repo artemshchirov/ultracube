@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { inject, onMounted, reactive, ref, watch } from 'vue'
+import debounce from 'lodash.debounce'
 import CardList from '@/components/Card/CardList.vue'
 import { API_URL } from '@/constants'
 import type { Cart } from '@/interfaces/cart'
 import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
 import axios from 'axios'
-import { inject, onMounted, reactive, ref, watch } from 'vue'
 
 const products = ref<Product[]>([])
 
@@ -30,11 +31,11 @@ const onChangeSelect = (event: Event) => {
   localStorage.setItem('filters', JSON.stringify(filters))
 }
 
-const onChangeSearchInput = (event: Event) => {
+const onChangeSearchInput = debounce((event: Event) => {
   const target = event.target as HTMLInputElement
   filters.searchQuery = target.value
   localStorage.setItem('filters', JSON.stringify(filters))
-}
+}, 250)
 
 const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
   try {
@@ -139,7 +140,7 @@ watch(
       <h2 class="home__title">All cubes</h2>
 
       <div class="home__settings">
-        <select v-model="filters.sortBy" @change="onChangeSelect" class="home__sort">
+        <select @change="onChangeSelect" class="home__sort">
           <option value="title">Name</option>
           <option value="price">Price (Low to High)</option>
           <option value="-price">Price (High to Low)</option>
@@ -147,12 +148,7 @@ watch(
 
         <div class="home__search">
           <img class="home__search-icon" src="/search.svg" alt="Search" />
-          <input
-            v-model="filters.searchQuery"
-            @input="onChangeSearchInput"
-            class="home__search-input"
-            placeholder="Search..."
-          />
+          <input @input="onChangeSearchInput" class="home__search-input" placeholder="Search..." />
         </div>
       </div>
     </div>
