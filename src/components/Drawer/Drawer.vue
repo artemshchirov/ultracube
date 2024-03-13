@@ -21,14 +21,14 @@ const orderId = ref(null)
       v-if="!totalPrice && !orderId"
       title="Cart is empty"
       description="Add at least one cube to make an order"
-      imageUrl="/package-icon.png"
+      imageUrl="/assets/package-icon.png"
     />
 
     <InfoBlock
       v-if="orderId"
       title="Order placed"
       :description="`Your order #${orderId} will soon be handed over to the courier delivery`"
-      imageUrl="/order-success-icon.png"
+      imageUrl="/assets/order-success-icon.png"
     />
 
     <div v-else class="drawer__container">

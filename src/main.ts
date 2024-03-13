@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: '/favorites',
-    name: 'Favorites',
+    name: 'favorites',
     component: Favorites
   }
 ]

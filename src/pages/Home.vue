@@ -140,7 +140,7 @@ watch(
         </select>
 
         <div class="home__search">
-          <img class="home__search-icon" src="/search.svg" alt="Search" />
+          <img class="home__search-icon" src="/assets/search.svg" alt="Search" />
           <input @input="onChangeSearchInput" class="home__search-input" placeholder="Search..." />
         </div>
       </div>

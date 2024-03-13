@@ -18,7 +18,7 @@ const emit = defineEmits(['onClickRemove'])
           <b class="cart-item__price-value">{{ price }}₪</b>
           <img
             @click="emit('onClickRemove')"
-            src="/close.svg"
+            src="/assets/close.svg"
             alt="Plus"
             class="cart-item__price-close-icon"
           />

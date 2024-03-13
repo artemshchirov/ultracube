@@ -17,18 +17,20 @@ const emit = defineEmits(['openDrawer'])
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__item" @click="() => emit('openDrawer')">
-          <img src="/cart.svg" alt="Cart" class="nav__icon" />
+          <img src="/assets/cart.svg" alt="Cart" class="nav__icon" />
           <b class="nav__item-text">{{ totalPrice }}₪</b>
         </li>
         <router-link to="/favorites" class="link">
           <li class="nav__item">
-            <img src="/heart.svg" alt="Favorites" class="nav__icon" /><span class="nav__item-text"
+            <img src="/assets/heart.svg" alt="Favorites" class="nav__icon" /><span
+              class="nav__item-text"
               >Favorites</span
             >
           </li>
         </router-link>
         <li class="nav__item">
-          <img src="/profile.svg" alt="Profile" class="nav__icon" /><span class="nav__item-text"
+          <img src="/assets/profile.svg" alt="Profile" class="nav__icon" /><span
+            class="nav__item-text"
             >Profile</span
           >
         </li>

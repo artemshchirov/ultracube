@@ -10,7 +10,7 @@ defineProps<Partial<Product>>()
       <img
         v-if="onClickFavorite"
         @click="onClickFavorite"
-        :src="isFavorite ? '/like-filled.svg' : '/like-empty.svg'"
+        :src="isFavorite ? '/assets/like-filled.svg' : '/assets/like-empty.svg'"
         alt="Like empty"
         class="product-card__like-icon"
       />
@@ -26,7 +26,7 @@ defineProps<Partial<Product>>()
       <img
         v-if="onClickAdd"
         @click="onClickAdd"
-        :src="isAdded ? '/checked.svg' : '/plus.svg'"
+        :src="isAdded ? '/assets/checked.svg' : '/assets/plus.svg'"
         alt="Plus"
         class="product-card__add-icon"
       />
