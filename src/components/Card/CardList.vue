@@ -4,6 +4,7 @@ import type { Product } from '@/interfaces/product'
 
 interface Props {
   products: Product[]
+  isFavorites?: boolean
 }
 
 defineProps<Readonly<Props>>()
@@ -19,8 +20,8 @@ const emit = defineEmits(['addToFavorite', 'onClickAddCard'])
         :image-url="product.imageUrl"
         :title="product.title"
         :price="product.price"
-        :on-click-favorite="() => emit('addToFavorite', product)"
-        :on-click-add="() => emit('onClickAddCard', product)"
+        :on-click-favorite="isFavorites ? undefined : () => emit('addToFavorite', product)"
+        :on-click-add="isFavorites ? undefined : () => emit('onClickAddCard', product)"
         :is-added="product.isAdded"
       />
     </li>

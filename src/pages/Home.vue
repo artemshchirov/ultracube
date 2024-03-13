@@ -39,7 +39,7 @@ const onChangeSearchInput = (event: Event) => {
 const addToFavorite: AddToFavoriteFunction = async (product: Product) => {
   try {
     if (!product.isFavorite) {
-      const newFavoriteProductData = { parentId: product.id }
+      const newFavoriteProductData = { product_id: product.id }
       product.isFavorite = true
       const { data: favoriteData } = await axios.post(
         `${API_URL}/favorites`,
@@ -82,7 +82,9 @@ const fetchProducts = async () => {
 const fetchFavorites = async () => {
   try {
     const { data: favoritesData } = await axios.get<Favorite[]>(`${API_URL}/favorites`)
-    const favoritesMap = new Map<number, Favorite>(favoritesData.map((fav) => [fav.parentId, fav]))
+    const favoritesMap = new Map<number, Favorite>(
+      favoritesData.map((fav) => [fav.product_id, fav])
+    )
 
     products.value = products.value.map((product: Product) => {
       const favorite = favoritesMap.get(product.id)

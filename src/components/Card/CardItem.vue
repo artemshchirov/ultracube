@@ -8,12 +8,13 @@ defineProps<Partial<Product>>()
   <article class="product-card">
     <div class="product-card__container">
       <img
+        v-if="onClickFavorite"
         @click="onClickFavorite"
         :src="isFavorite ? '/like-filled.svg' : '/like-empty.svg'"
         alt="Like empty"
         class="product-card__like-icon"
       />
-      <img :src="imageUrl" alt="Sneaker" class="product-card__image" />
+      <img :src="imageUrl" :alt="title" class="product-card__image" />
       <p class="product-card__title">{{ title }}</p>
     </div>
     <div class="product-card__footer">
@@ -23,6 +24,7 @@ defineProps<Partial<Product>>()
       </div>
 
       <img
+        v-if="onClickAdd"
         @click="onClickAdd"
         :src="isAdded ? '/checked.svg' : '/plus.svg'"
         alt="Plus"
