@@ -2,6 +2,7 @@
 import { ref, provide, computed, watch } from 'vue'
 import Drawer from '@/components/Drawer/Drawer.vue'
 import AppHeader from '@/components/AppHeader.vue'
+import AppFooter from '@/components/AppFooter.vue'
 import type { Product } from '@/interfaces/product'
 import type { Cart } from '@/interfaces/cart'
 
@@ -21,9 +22,13 @@ const addToCart = (product: Product) => {
 }
 
 const removeFromCart = (product: Product) => {
-  cart.value.splice(cart.value.indexOf(product), 1)
-  product.isAdded = false
+  const index = cart.value.findIndex((item) => item.id === product.id)
+  if (index !== -1) {
+    cart.value.splice(index, 1)
+    product.isAdded = false
+  }
 }
+
 /* End of Cart */
 
 watch(
@@ -53,42 +58,19 @@ provide<Partial<Cart>>('cart', {
       <router-view />
     </div>
   </div>
-  <div class="about">
-    <a class="link about__author" href="https://artemshchirov.github.io/portfolio" target="_blank">
-      Developed with 💻 and ❤️ by <span class="about__author-name">Ɐrtem</span>
-    </a>
-    <a class="link about__source" href="https://github.com/artemshchirov/ultracube" target="_blank"
-      >Explore on GitHub</a
-    >
-  </div>
+  <AppFooter />
 </template>
 
 <style lang="scss">
-.about {
-  max-width: max-content;
-  margin: 0 auto 40px;
-  font-size: 0.875rem; /* 14px */
-  line-height: 1.25rem; /* 20px */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-
-  &__author,
-  &__source {
-    @include link-style;
-  }
-}
-
 .page {
   width: 80%;
-  margin: 56px auto;
+  margin: 80px auto;
   background: var(--color-page-background);
   border-radius: $border-radius-page;
   box-shadow: $shadow-sm, $shadow-xl;
 
   &__container {
-    padding: 40px;
+    padding: 45px 60px;
   }
 }
 
