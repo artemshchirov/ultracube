@@ -44,7 +44,7 @@ const emit = defineEmits(['openDrawer'])
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-separator);
-  padding: 32px 40px;
+  padding: 45px 60px;
 }
 
 .nav {
@@ -59,7 +59,7 @@ const emit = defineEmits(['openDrawer'])
   &__item {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     cursor: pointer;
 
     &-text {

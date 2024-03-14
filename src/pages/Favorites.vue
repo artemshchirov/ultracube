@@ -30,7 +30,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 .favorites {
   &__header {
-    margin-bottom: 40px;
+    margin-bottom: 36px;
   }
 
   &__title {

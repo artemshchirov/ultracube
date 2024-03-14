@@ -21,9 +21,7 @@ const { cart, removeFromCart } = inject('cart') as Cart
 .cart-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 32px;
-  // max-height: 100%;
-  // overflow: auto;
+  gap: 20px;
+  margin-top: 30px;
 }
 </style>

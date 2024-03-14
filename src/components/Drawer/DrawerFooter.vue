@@ -78,12 +78,13 @@ const isButtonDisabled = computed(() => !totalPriceAfterDiscount.value || isLoad
   &__container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
   }
 
   &__price {
     display: flex;
     gap: 8px;
+    line-height: 1;
 
     &_total {
       margin-top: 8px;

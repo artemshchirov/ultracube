@@ -33,7 +33,7 @@ const emit = defineEmits(['addToFavorite', 'onClickAddCard'])
   &__cards {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    gap: 40px;
   }
 }
 </style>
