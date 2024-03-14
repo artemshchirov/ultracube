@@ -10,6 +10,7 @@ Welcome to `ultracube`, a functional online store built with Vue 3, showcasing t
 - **Styling**: Incorporating SCSS for a modern, utility-first approach to styling application.
 - **Animations**: Adding life to project lists and interactions with @formkit/auto-animate, making UI dynamic and engaging.
 - **Best Practices**: Utilizing Vue 3's Composition API for organizing and reusing logic, ensuring codebase is clean and maintainable.
+- **Pixel Perfect Design**: Implementing design with pixel-perfect accuracy according to Figma mockups, ensuring visual consistency and quality of the user interface.
 
 ## ⚙️ Technology Stack
 
@@ -23,12 +24,17 @@ Welcome to `ultracube`, a functional online store built with Vue 3, showcasing t
 - mokky.dev
 - ESLint
 - Prettier
+- Figma
 
 ## ✔️ TODO
 
+- [ ] Adaptive mobile layout
 - [x] Debounce search
+- [ ] Home page Swiper
 - [ ] Profile page
-- [ ] Show orders in profile
+- [ ] My Orders section
+- [ ] Info Block for empty pages
+- [ ] Products skeletons
 - [ ] Authentication
 - [ ] Navigation menu
 
