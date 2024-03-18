@@ -7,21 +7,29 @@ const [emblaRef] = emblaCarouselVue(
     loop: true,
     autoplay: true
   },
-  [Autoplay({ delay: 8000 })]
+  [Autoplay({ delay: 5000 })]
 )
 
-const images = [
+const carouselImages = [
   {
-    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/b-15xeuS6yM_aL5VpGY5T8.jpg',
+    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/carousel-1_rF0s-Yyzk.webp?updatedAt=1710797669023',
     alt: 'Slide 1'
   },
   {
-    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/Yaes9e8jzcM_ko_6TP9t46.jpg',
+    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/carousel-2_GtTNDkeFm.webp?updatedAt=1710797669126',
     alt: 'Slide 2'
   },
   {
-    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/bre9NRpAl-g_e37oxmlB1m.jpg',
+    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/carousel-3_ExGPsFofN.webp?updatedAt=1710797668954',
     alt: 'Slide 3'
+  },
+  {
+    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/carousel-4_dXF6HEklZ.webp?updatedAt=1710797668955',
+    alt: 'Slide 4'
+  },
+  {
+    src: 'https://ik.imagekit.io/webbuilder/rubiks-cubes-shop/Carousel/carousel-5_z-BMmbH-f.webp?updatedAt=1710797668979',
+    alt: 'Slide 5'
   }
 ]
 </script>
@@ -29,7 +37,7 @@ const images = [
 <template>
   <div ref="emblaRef" class="embla">
     <div class="embla__container">
-      <div v-for="({ src, alt }, index) in images" :key="index" class="embla__slide">
+      <div v-for="({ src, alt }, index) in carouselImages" :key="index" class="embla__slide">
         <img :src="src" :alt="alt" class="embla__slide-img" />
       </div>
     </div>
@@ -50,7 +58,7 @@ const images = [
 
   &__slide {
     flex: 0 0 auto;
-    max-width: 100%;
+    max-width: 70%;
     width: 100%;
     height: 300px;
     display: flex;
