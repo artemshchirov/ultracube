@@ -15,6 +15,8 @@
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
     "axios": "^1.6.7",
+    "embla-carousel-autoplay": "^8.0.0",
+    "embla-carousel-vue": "^8.0.0",
     "lodash.debounce": "^4.0.8",
     "remove": "^0.1.5",
     "vue": "^3.4.15",

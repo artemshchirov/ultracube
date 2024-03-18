@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { inject, onMounted, reactive, ref, watch } from 'vue'
+
+import axios from 'axios'
 import debounce from 'lodash.debounce'
+import Carousel from '@/components/Carousel/Carousel.vue'
 import CardList from '@/components/Card/CardList.vue'
 import { API_URL } from '@/constants'
 import type { Cart } from '@/interfaces/cart'
 import type { AddToFavoriteFunction, Favorite } from '@/interfaces/favorite'
 import type { Product } from '@/interfaces/product'
-import axios from 'axios'
 
 const products = ref<Product[]>([])
 
@@ -128,6 +130,7 @@ watch(
 </script>
 
 <template>
+  <Carousel />
   <section class="home">
     <div class="home__header">
       <h2 class="home__title">All cubes</h2>

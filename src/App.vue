@@ -53,7 +53,6 @@ provide<Partial<Cart>>('cart', {
   <Drawer v-if="isDrawerOpen" />
   <div class="page">
     <AppHeader @open-drawer="openDrawer" :total-price="totalPrice" />
-
     <div class="page__container">
       <router-view />
     </div>

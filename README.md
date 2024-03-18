@@ -30,7 +30,7 @@ Welcome to `ultracube`, a functional online store built with Vue 3, showcasing t
 
 - [ ] Adaptive mobile layout
 - [x] Debounce search
-- [ ] Home page Swiper
+- [x] Home page Swiper
 - [ ] Profile page
 - [ ] My Orders section
 - [ ] Info Block for empty pages
